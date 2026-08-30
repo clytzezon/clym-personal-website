@@ -3,12 +3,87 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
+    <title>Locker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Sans+KR:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <header></header>
-    <main></main>
-    <footer></footer>
+    <div id="stage" data-view="row">
+      <p class="hint" aria-live="polite"></p>
+
+      <div class="hall">
+        <div class="locker-row" id="locker-row"></div>
+        <div class="floor" aria-hidden="true"></div>
+      </div>
+
+      <section class="content-view" data-layer="id" aria-hidden="true">
+        <div class="content-view__panel id-panel" data-stay>
+          <article class="id-card-large">
+            <div class="id-card-large__photo"></div>
+            <div class="id-card-large__meta">
+              <p class="id-kicker">Student ID</p>
+              <h2>Name</h2>
+              <p>Architecture Student</p>
+              <p class="id-small">No. 102 · Studio</p>
+            </div>
+          </article>
+          <div class="resume-placeholder">
+            <h3>About / Resume</h3>
+            <p><span>Name</span> Placeholder name</p>
+            <p><span>Focus</span> Architecture Student</p>
+            <p><span>Education</span> Placeholder school</p>
+            <p><span>Contact</span> hello@example.com</p>
+          </div>
+          <button type="button" class="return-note" data-return>back to locker</button>
+        </div>
+      </section>
+
+      <section class="content-view" data-layer="architecture" aria-hidden="true">
+        <div class="content-view__panel" data-stay>
+          <p class="view-kicker">from the locker</p>
+          <h1>Architecture</h1>
+          <p class="view-lead">Placeholder projects — content comes later.</p>
+          <div class="card-grid">
+            <article class="project-card"><span>01</span><h2>Project A</h2><p>Placeholder</p></article>
+            <article class="project-card"><span>02</span><h2>Project B</h2><p>Placeholder</p></article>
+            <article class="project-card"><span>03</span><h2>Project C</h2><p>Placeholder</p></article>
+          </div>
+          <button type="button" class="return-note" data-return>back to locker</button>
+        </div>
+      </section>
+
+      <section class="content-view" data-layer="art" aria-hidden="true">
+        <div class="content-view__panel" data-stay>
+          <p class="view-kicker">from the locker</p>
+          <h1>Art / Crafts</h1>
+          <p class="view-lead">Placeholder studio pieces.</p>
+          <div class="card-grid">
+            <article class="project-card"><span>✦</span><h2>Sketchbook</h2><p>Placeholder</p></article>
+            <article class="project-card"><span>✦</span><h2>Paper craft</h2><p>Placeholder</p></article>
+            <article class="project-card"><span>✦</span><h2>Study model</h2><p>Placeholder</p></article>
+          </div>
+          <button type="button" class="return-note" data-return>back to locker</button>
+        </div>
+      </section>
+
+      <section class="content-view" data-layer="photo" aria-hidden="true">
+        <div class="content-view__panel" data-stay>
+          <p class="view-kicker">from the locker</p>
+          <h1>Photography</h1>
+          <p class="view-lead">Placeholder photographs.</p>
+          <div class="card-grid card-grid--photos">
+            <article class="project-card polaroid-card"><div class="polaroid-card__img"></div><p>Untitled 01</p></article>
+            <article class="project-card polaroid-card"><div class="polaroid-card__img"></div><p>Untitled 02</p></article>
+            <article class="project-card polaroid-card"><div class="polaroid-card__img"></div><p>Untitled 03</p></article>
+          </div>
+          <button type="button" class="return-note" data-return>back to locker</button>
+        </div>
+      </section>
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
