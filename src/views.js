@@ -72,8 +72,14 @@ export function updateCameraOrigin(stage) {
   if (!hall || !mine) return
   const hallBox = hall.getBoundingClientRect()
   const mineBox = mine.getBoundingClientRect()
-  const x = ((mineBox.left + mineBox.width / 2 - hallBox.left) / hallBox.width) * 100
-  const y = ((mineBox.top + mineBox.height / 2 - hallBox.top) / hallBox.height) * 100
+  const mineCx = mineBox.left + mineBox.width / 2
+  const mineCy = mineBox.top + mineBox.height / 2
+  const hallCx = hallBox.left + hallBox.width / 2
+  const hallCy = hallBox.top + hallBox.height / 2
+  const x = ((mineCx - hallBox.left) / hallBox.width) * 100
+  const y = ((mineCy - hallBox.top) / hallBox.height) * 100
   hall.style.setProperty('--cam-x', `${x}%`)
   hall.style.setProperty('--cam-y', `${y}%`)
+  hall.style.setProperty('--shift-x', `${Math.round(hallCx - mineCx)}px`)
+  hall.style.setProperty('--shift-y', `${Math.round(hallCy - mineCy - hallBox.height * 0.03)}px`)
 }
