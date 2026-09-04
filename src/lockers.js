@@ -1,3 +1,10 @@
+import architectureModel from './assets/locker-originals/architecture-model.png'
+import polaroidCamera from './assets/locker-originals/polaroid-camera.png'
+import artSupplies from './assets/locker-originals/art-supplies.png'
+import backpack from './assets/locker-originals/backpack.png'
+import books from './assets/locker-originals/books.png'
+import poster from './assets/locker-originals/poster.png'
+
 const COLUMNS = [
   {
     top: { number: '101', decor: 'a' },
@@ -20,6 +27,53 @@ const COLUMNS = [
     bottom: { number: '110', decor: 'a' },
   },
 ]
+
+const INTERIOR_OBJECTS = [
+  {
+    id: 'architecture',
+    asset: architectureModel,
+    className: 'object--model',
+    label: 'Architecture',
+    ariaLabel: 'Architecture model',
+  },
+  {
+    id: 'art',
+    asset: artSupplies,
+    className: 'object--art',
+    label: 'Art / Crafts',
+    ariaLabel: 'Art and crafts supplies',
+  },
+  {
+    id: 'photo',
+    asset: polaroidCamera,
+    className: 'object--camera',
+    label: 'Photography',
+    ariaLabel: 'Polaroid camera, photography',
+  },
+]
+
+const SUPPORTING_OBJECTS = [
+  { asset: poster, className: 'asset--poster' },
+  { asset: books, className: 'asset--books' },
+  { asset: backpack, className: 'asset--backpack' },
+]
+
+function clickableObject({ id, asset, className, label, ariaLabel }) {
+  return `
+    <button type="button" class="object ${className}" data-object="${id}" aria-label="${ariaLabel}">
+      <img class="object__image" src="${asset}" alt="" draggable="false" />
+      <span class="object-label">${label}</span>
+    </button>
+  `
+}
+
+function supportingObject({ asset, className }) {
+  return `
+    <div class="locker-asset ${className}" aria-hidden="true">
+      <img src="${asset}" alt="" draggable="false" />
+    </div>
+  `
+}
 
 function vents() {
   return `
@@ -112,6 +166,7 @@ function innerDoor() {
               </span>
             </span>
           </span>
+          <span class="object-label">About</span>
         </button>
       </div>
     </div>
@@ -127,32 +182,12 @@ function interior() {
         <div class="wall wall--right"></div>
         <div class="wall wall--back"></div>
         <div class="wall wall--floor"></div>
+        ${SUPPORTING_OBJECTS.map(supportingObject).join('')}
         <div class="shelf">
           <div class="shelf-top"></div>
           <div class="shelf-front"></div>
         </div>
-        <button type="button" class="object object--model" data-object="architecture" aria-label="Architecture model">
-          <span class="massing">
-            <span class="mass mass--low"></span>
-            <span class="mass mass--tower"></span>
-          </span>
-          <span class="object-label">Architecture</span>
-        </button>
-        <button type="button" class="object object--art" data-object="art" aria-label="Art and crafts supplies">
-          <span class="art-kit">
-            <span class="jar"></span>
-            <span class="tool tool--brush"></span>
-            <span class="tool tool--brush-b"></span>
-          </span>
-          <span class="object-label">Art</span>
-        </button>
-        <button type="button" class="object object--camera" data-object="photo" aria-label="Camera, photography">
-          <span class="cam">
-            <span class="cam__body"></span>
-            <span class="cam__lens"></span>
-          </span>
-          <span class="object-label">Photo</span>
-        </button>
+        ${INTERIOR_OBJECTS.map(clickableObject).join('')}
       </div>
     </div>
   `

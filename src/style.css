@@ -23,6 +23,7 @@
   --bank-w: 680px;
   --bank-h: 572px;
   --door-t: 11px;
+  --interior-drop: 2%;
   --sans: 'IBM Plex Sans KR', system-ui, sans-serif;
   --serif: 'Cormorant Garamond', Georgia, serif;
   --note: 'Caveat', cursive;
@@ -60,8 +61,10 @@ body {
   z-index: 4;
   margin: 0;
   text-align: center;
-  font-family: var(--note);
-  font-size: 22px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 17px;
+  font-style: italic;
+  letter-spacing: 0.015em;
   color: var(--muted);
   pointer-events: none;
 }
@@ -550,25 +553,81 @@ body {
 
 .shelf {
   position: absolute;
-  left: 11%;
-  right: 11%;
-  top: 49%;
+  left: 5%;
+  right: 5%;
+  top: calc(49% + var(--interior-drop));
   z-index: 2;
 }
 
 .shelf-top {
-  height: 8px;
+  height: 16px;
   background: linear-gradient(#6a645c, var(--shelf-top));
-  clip-path: polygon(5% 0, 95% 0, 100% 100%, 0 100%);
+  clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%);
   box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .shelf-front {
-  height: 4px;
+  height: 3px;
   background: linear-gradient(#909b9b, var(--shelf));
   box-shadow:
     inset 0 1px rgba(255, 255, 255, 0.18),
     0 3px 4px rgba(75, 59, 36, 0.2);
+}
+
+.locker-asset {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+}
+
+.locker-asset img,
+.object__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+}
+
+.asset--poster {
+  left: 8%;
+  top: calc(2% + var(--interior-drop));
+  z-index: 1;
+  width: 82%;
+  height: 36%;
+  transform: rotate(1.2deg);
+  filter: saturate(0.72) contrast(0.92) sepia(0.05) drop-shadow(1px 2px 2px rgba(77, 59, 36, 0.18));
+}
+
+.asset--books {
+  right: -14%;
+  bottom: calc(51% - 15px - var(--interior-drop) - 2%);
+  z-index: 3;
+  width: 88%;
+  height: 43%;
+  filter: saturate(0.8) contrast(0.94) drop-shadow(2px 3px 2px rgba(60, 44, 26, 0.24));
+}
+
+.asset--backpack {
+  left: 40%;
+  bottom: calc(7% - var(--interior-drop) - 2%);
+  z-index: 2;
+  width: 96%;
+  height: 45%;
+  transform: translateX(-50%);
+  filter: saturate(0.76) contrast(0.93) sepia(0.04) drop-shadow(2px 5px 4px rgba(58, 45, 29, 0.22));
+}
+
+.asset--backpack::after {
+  content: '';
+  position: absolute;
+  left: 24%;
+  right: 24%;
+  bottom: 4%;
+  height: 7%;
+  border-radius: 50%;
+  background: rgba(74, 57, 37, 0.14);
+  filter: blur(2px);
 }
 
 .object {
@@ -582,9 +641,10 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  gap: 2px;
+  overflow: visible;
   font-family: var(--note);
   color: #6a5a4a;
+  line-height: 0;
   pointer-events: none;
 }
 
@@ -593,10 +653,26 @@ body {
   position: absolute;
   left: 15%;
   right: 15%;
-  bottom: -4px;
-  height: 8px;
-  background: radial-gradient(ellipse, rgba(60, 42, 24, 0.28), transparent 70%);
+  bottom: 4%;
+  height: 7%;
+  border-radius: 50%;
+  background: rgba(63, 48, 30, 0.18);
+  filter: blur(2px);
   pointer-events: none;
+}
+
+.object__image {
+  position: relative;
+  z-index: 1;
+  transform-origin: center bottom;
+  transition:
+    transform 0.22s ease,
+    filter 0.22s ease;
+}
+
+.object:hover .object__image,
+.object:focus-visible .object__image {
+  transform: translateY(-1px) scale(1.018);
 }
 
 .object--id::after {
@@ -646,9 +722,28 @@ body {
 .object-label {
   position: absolute;
   top: calc(100% + 5px);
+  z-index: 4;
   white-space: nowrap;
-  font-size: 12px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 10px;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.015em;
   line-height: 1;
+  opacity: 0;
+  transform: translateY(2px) scale(0.46);
+  transform-origin: center top;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.62);
+  pointer-events: none;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.object:hover .object-label,
+.object:focus-visible .object-label {
+  opacity: 1;
+  transform: translateY(0) scale(0.46);
 }
 
 .object--id {
@@ -656,6 +751,10 @@ body {
   left: 50%;
   transform: translateX(-50%);
   z-index: 4;
+}
+
+.object--id .object-label {
+  top: calc(100% + 3px);
 }
 
 .id-hook {
@@ -718,101 +817,72 @@ body {
 }
 
 .object--model {
-  left: 12%;
-  bottom: calc(51% - 7px);
+  left: -3%;
+  bottom: calc(51% - 15px - var(--interior-drop) - 2%);
+  z-index: 4;
+  width: 61%;
+  height: 35%;
+}
+
+.object--model .object-label {
+  top: auto;
+  bottom: -8px;
+  left: 13%;
+}
+
+.object--model .object__image {
+  filter: saturate(0.72) contrast(0.94) sepia(0.07) drop-shadow(2px 3px 2px rgba(62, 47, 30, 0.22));
+}
+
+.object--model:hover .object__image,
+.object--model:focus-visible .object__image {
+  filter: saturate(0.78) contrast(0.98) sepia(0.05) drop-shadow(2px 4px 3px rgba(62, 47, 30, 0.28));
 }
 
 .object--art {
-  right: 12%;
-  bottom: calc(51% - 7px);
+  right: -1%;
+  bottom: calc(3% - var(--interior-drop) - 2%);
+  z-index: 4;
+  width: 64%;
+  height: 29%;
+}
+
+.object--art .object-label {
+  top: auto;
+  right: 13%;
+  bottom: -5px;
+}
+
+.object--art .object__image {
+  filter: saturate(0.75) contrast(0.94) sepia(0.03) drop-shadow(2px 3px 2px rgba(62, 47, 30, 0.2));
+}
+
+.object--art:hover .object__image,
+.object--art:focus-visible .object__image {
+  filter: saturate(0.8) contrast(0.97) sepia(0.02) drop-shadow(2px 4px 3px rgba(62, 47, 30, 0.26));
 }
 
 .object--camera {
-  right: 14%;
-  bottom: 13%;
+  left: -2%;
+  bottom: calc(-1% - var(--interior-drop));
+  z-index: 5;
+  width: 47%;
+  height: 20%;
 }
 
-.massing {
-  display: flex;
-  align-items: flex-end;
-  gap: 3px;
-  height: 42px;
-  filter: drop-shadow(2px 3px 2px rgba(50, 40, 30, 0.22));
+.object--camera .object-label {
+  top: auto;
+  left: 12%;
+  bottom: -5px;
 }
 
-.mass {
-  background: #f4eee4;
-  box-shadow: 3px 0 0 #d8cfc2, 0 -3px 0 #faf6f0;
+.object--camera .object__image {
+  filter: saturate(0.78) brightness(0.96) sepia(0.03) drop-shadow(2px 3px 2px rgba(52, 42, 31, 0.22));
 }
 
-.mass--low {
-  width: 26px;
-  height: 22px;
-}
-
-.mass--tower {
-  width: 16px;
-  height: 38px;
-}
-
-.art-kit {
-  position: relative;
-  width: 36px;
-  height: 44px;
-}
-
-.jar {
-  position: absolute;
-  left: 7px;
-  bottom: 0;
-  width: 22px;
-  height: 16px;
-  border-radius: 0 0 6px 6px;
-  background: #eadfd0;
-  border: 1px solid #cbbba8;
-}
-
-.tool {
-  position: absolute;
-  bottom: 14px;
-  width: 4px;
-  border-radius: 2px 2px 0 0;
-}
-
-.tool--brush {
-  left: 12px;
-  height: 28px;
-  background: linear-gradient(#8a5a3a 0 7px, #d2c0a6 7px);
-}
-
-.tool--brush-b {
-  left: 20px;
-  height: 24px;
-  background: linear-gradient(#5d7386 0 6px, #d2c0a6 6px);
-}
-
-.cam {
-  position: relative;
-  width: 48px;
-  height: 28px;
-}
-
-.cam__body {
-  position: absolute;
-  inset: 8px 0 0;
-  border-radius: 4px;
-  background: linear-gradient(180deg, #5c656b, #3b4348);
-}
-
-.cam__lens {
-  position: absolute;
-  left: 14px;
-  bottom: 2px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 38% 34%, #8ea0aa, #1c2428 62%);
-  border: 2px solid #6a757c;
+.object--camera:hover .object__image,
+.object--camera:focus-visible .object__image {
+  filter: saturate(0.84) brightness(0.98) sepia(0.02) drop-shadow(2px 4px 3px rgba(52, 42, 31, 0.28));
 }
 
 .content-view {
