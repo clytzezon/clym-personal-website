@@ -1,8 +1,9 @@
-import architectureModel from './assets/locker-originals/architecture-model.png'
-import polaroidCamera from './assets/locker-originals/polaroid-camera.png'
-import artSupplies from './assets/locker-originals/art-supplies.png'
-import backpack from './assets/locker-originals/backpack.png'
-import books from './assets/locker-originals/books.png'
+import polaroidCamera from './assets/locker-processed/polaroid-camera-polished.png'
+import artSupplies from './assets/locker-processed/art-supplies-polished.png'
+import backpack from './assets/locker-processed/backpack-polished.png'
+import books from './assets/locker-processed/books-polished.png'
+import cdPlayer from './assets/locker-processed/cd-player-polished.png'
+import idCard from './assets/locker-processed/id-card-polished.png'
 import poster from './assets/locker-originals/poster.png'
 
 const COLUMNS = [
@@ -31,10 +32,10 @@ const COLUMNS = [
 const INTERIOR_OBJECTS = [
   {
     id: 'architecture',
-    asset: architectureModel,
-    className: 'object--model',
+    asset: books,
+    className: 'object--books',
     label: 'Architecture',
-    ariaLabel: 'Architecture model',
+    ariaLabel: 'Books, architecture',
   },
   {
     id: 'art',
@@ -54,8 +55,24 @@ const INTERIOR_OBJECTS = [
 
 const SUPPORTING_OBJECTS = [
   { asset: poster, className: 'asset--poster' },
-  { asset: books, className: 'asset--books' },
   { asset: backpack, className: 'asset--backpack' },
+]
+
+const DOOR_OBJECTS = [
+  {
+    id: 'id',
+    asset: idCard,
+    className: 'object--id',
+    label: 'About',
+    ariaLabel: 'Student ID, resume and about',
+  },
+  {
+    id: 'music',
+    asset: cdPlayer,
+    className: 'object--music',
+    label: 'Music',
+    ariaLabel: 'CD player, music',
+  },
 ]
 
 function clickableObject({ id, asset, className, label, ariaLabel }) {
@@ -151,23 +168,7 @@ function innerDoor() {
         <div class="deco deco--polaroid deco--in-2" aria-hidden="true">
           <span class="deco-photo deco-photo--warm"></span>
         </div>
-        <div class="deco deco--memo" aria-hidden="true">pin-up friday<br />bring chipboard</div>
-        <button type="button" class="object object--id" data-object="id" aria-label="Student ID, resume and about">
-          <span class="id-hook" aria-hidden="true"></span>
-          <span class="id-strap" aria-hidden="true"></span>
-          <span class="id-card">
-            <span class="id-card__face">
-              <span class="id-card__photo"></span>
-              <span class="id-card__meta">
-                <span class="id-card__kicker">Student</span>
-                <span class="id-card__name">Name</span>
-                <span class="id-card__line"></span>
-                <span class="id-card__line id-card__line--short"></span>
-              </span>
-            </span>
-          </span>
-          <span class="object-label">About</span>
-        </button>
+        ${DOOR_OBJECTS.map(clickableObject).join('')}
       </div>
     </div>
   `

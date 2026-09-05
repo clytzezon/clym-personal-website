@@ -6,6 +6,7 @@ export const VIEW = {
   ARCHITECTURE: 'architecture',
   ART: 'art',
   PHOTO: 'photo',
+  MUSIC: 'music',
 }
 
 const OBJECT_TO_VIEW = {
@@ -13,6 +14,7 @@ const OBJECT_TO_VIEW = {
   architecture: VIEW.ARCHITECTURE,
   art: VIEW.ART,
   photo: VIEW.PHOTO,
+  music: VIEW.MUSIC,
 }
 
 const BACK = {
@@ -20,6 +22,7 @@ const BACK = {
   [VIEW.ARCHITECTURE]: VIEW.OPEN,
   [VIEW.ART]: VIEW.OPEN,
   [VIEW.PHOTO]: VIEW.OPEN,
+  [VIEW.MUSIC]: VIEW.OPEN,
   [VIEW.OPEN]: VIEW.ZOOMED,
   [VIEW.ZOOMED]: VIEW.ROW,
 }
@@ -32,6 +35,7 @@ const HINTS = {
   [VIEW.ARCHITECTURE]: 'Click empty space to return to the locker.',
   [VIEW.ART]: 'Click empty space to return to the locker.',
   [VIEW.PHOTO]: 'Click empty space to return to the locker.',
+  [VIEW.MUSIC]: 'Click empty space to return to the locker.',
 }
 
 export function getView(stage) {
@@ -61,7 +65,8 @@ export function isContentView(view) {
     view === VIEW.ID ||
     view === VIEW.ARCHITECTURE ||
     view === VIEW.ART ||
-    view === VIEW.PHOTO
+    view === VIEW.PHOTO ||
+    view === VIEW.MUSIC
   )
 }
 

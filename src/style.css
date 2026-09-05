@@ -23,7 +23,6 @@
   --bank-w: 680px;
   --bank-h: 572px;
   --door-t: 11px;
-  --interior-drop: 2%;
   --sans: 'IBM Plex Sans KR', system-ui, sans-serif;
   --serif: 'Cormorant Garamond', Georgia, serif;
   --note: 'Caveat', cursive;
@@ -90,14 +89,16 @@ body {
 #stage[data-view='id'] .hall,
 #stage[data-view='architecture'] .hall,
 #stage[data-view='art'] .hall,
-#stage[data-view='photo'] .hall {
+#stage[data-view='photo'] .hall,
+#stage[data-view='music'] .hall {
   transform: translate(var(--shift-x, 0px), calc(var(--shift-y, 0px) + 7px)) scale(2.62);
 }
 
 #stage[data-view='id'] .hall,
 #stage[data-view='architecture'] .hall,
 #stage[data-view='art'] .hall,
-#stage[data-view='photo'] .hall {
+#stage[data-view='photo'] .hall,
+#stage[data-view='music'] .hall {
   filter: blur(7px) brightness(0.72);
   pointer-events: none;
 }
@@ -187,7 +188,8 @@ body {
 #stage[data-view='id'] .locker--mine .recess,
 #stage[data-view='architecture'] .locker--mine .recess,
 #stage[data-view='art'] .locker--mine .recess,
-#stage[data-view='photo'] .locker--mine .recess {
+#stage[data-view='photo'] .locker--mine .recess,
+#stage[data-view='music'] .locker--mine .recess {
   overflow: visible;
 }
 
@@ -427,25 +429,13 @@ body {
 .deco--in-1 { top: 18px; left: 14px; transform: rotate(-8deg); }
 .deco--in-2 { top: 64px; right: 16px; transform: rotate(7deg); }
 
-.deco--memo {
-  left: 12px;
-  bottom: 18px;
-  width: 72px;
-  padding: 8px;
-  background: #efdfb0;
-  font-family: var(--note);
-  font-size: 12px;
-  line-height: 1.2;
-  color: #5a4632;
-  transform: rotate(-3deg);
-}
-
 #stage[data-view='zoomed'] .compartment:not(.locker--mine),
 #stage[data-view='open'] .compartment:not(.locker--mine),
 #stage[data-view='id'] .compartment:not(.locker--mine),
 #stage[data-view='architecture'] .compartment:not(.locker--mine),
 #stage[data-view='art'] .compartment:not(.locker--mine),
-#stage[data-view='photo'] .compartment:not(.locker--mine) {
+#stage[data-view='photo'] .compartment:not(.locker--mine),
+#stage[data-view='music'] .compartment:not(.locker--mine) {
   opacity: 0.42;
   pointer-events: none;
 }
@@ -454,7 +444,8 @@ body {
 #stage[data-view='id'] .locker--mine .locker-door,
 #stage[data-view='architecture'] .locker--mine .locker-door,
 #stage[data-view='art'] .locker--mine .locker-door,
-#stage[data-view='photo'] .locker--mine .locker-door {
+#stage[data-view='photo'] .locker--mine .locker-door,
+#stage[data-view='music'] .locker--mine .locker-door {
   transform: rotateY(-130deg);
   box-shadow: -22px 10px 28px rgba(20, 24, 28, 0.32);
 }
@@ -463,7 +454,8 @@ body {
 #stage[data-view='id'] .locker--mine .hinge,
 #stage[data-view='architecture'] .locker--mine .hinge,
 #stage[data-view='art'] .locker--mine .hinge,
-#stage[data-view='photo'] .locker--mine .hinge {
+#stage[data-view='photo'] .locker--mine .hinge,
+#stage[data-view='music'] .locker--mine .hinge {
   opacity: 0;
   visibility: hidden;
   transition-delay: 0s, 0.95s;
@@ -555,12 +547,15 @@ body {
   position: absolute;
   left: 5%;
   right: 5%;
-  top: calc(49% + var(--interior-drop));
+  top: 46%;
   z-index: 2;
 }
 
 .shelf-top {
-  height: 16px;
+  position: relative;
+  top: -10px;
+  height: 26px;
+  margin-bottom: -10px;
   background: linear-gradient(#6a645c, var(--shelf-top));
   clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%);
   box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.08);
@@ -586,48 +581,39 @@ body {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  object-position: center;
   user-select: none;
 }
 
 .asset--poster {
   left: 8%;
-  top: calc(2% + var(--interior-drop));
+  top: 4%;
   z-index: 1;
   width: 82%;
   height: 36%;
   transform: rotate(1.2deg);
-  filter: saturate(0.72) contrast(0.92) sepia(0.05) drop-shadow(1px 2px 2px rgba(77, 59, 36, 0.18));
-}
-
-.asset--books {
-  right: -14%;
-  bottom: calc(51% - 15px - var(--interior-drop) - 2%);
-  z-index: 3;
-  width: 88%;
-  height: 43%;
-  filter: saturate(0.8) contrast(0.94) drop-shadow(2px 3px 2px rgba(60, 44, 26, 0.24));
+  filter: saturate(0.72) contrast(0.92) sepia(0.05) drop-shadow(1px 1px 1px rgba(77, 59, 36, 0.18));
 }
 
 .asset--backpack {
-  left: 40%;
-  bottom: calc(7% - var(--interior-drop) - 2%);
+  left: -10%;
+  bottom: 8%;
   z-index: 2;
-  width: 96%;
-  height: 45%;
-  transform: translateX(-50%);
-  filter: saturate(0.76) contrast(0.93) sepia(0.04) drop-shadow(2px 5px 4px rgba(58, 45, 29, 0.22));
+  width: 100%;
+  height: 39%;
+  filter: drop-shadow(1px 2px 1.5px rgba(58, 45, 29, 0.22));
 }
 
 .asset--backpack::after {
   content: '';
   position: absolute;
-  left: 24%;
-  right: 24%;
+  left: 29%;
+  right: 29%;
   bottom: 4%;
-  height: 7%;
+  height: 4%;
   border-radius: 50%;
   background: rgba(74, 57, 37, 0.14);
-  filter: blur(2px);
+  filter: blur(0.8px);
 }
 
 .object {
@@ -651,13 +637,13 @@ body {
 .object::after {
   content: '';
   position: absolute;
-  left: 15%;
-  right: 15%;
+  left: 22%;
+  right: 22%;
   bottom: 4%;
-  height: 7%;
+  height: 4%;
   border-radius: 50%;
   background: rgba(63, 48, 30, 0.18);
-  filter: blur(2px);
+  filter: blur(0.8px);
   pointer-events: none;
 }
 
@@ -675,15 +661,12 @@ body {
   transform: translateY(-1px) scale(1.018);
 }
 
-.object--id::after {
-  display: none;
-}
-
 #stage[data-view='open'] .locker--mine .cavity,
 #stage[data-view='id'] .locker--mine .cavity,
 #stage[data-view='architecture'] .locker--mine .cavity,
 #stage[data-view='art'] .locker--mine .cavity,
-#stage[data-view='photo'] .locker--mine .cavity {
+#stage[data-view='photo'] .locker--mine .cavity,
+#stage[data-view='music'] .locker--mine .cavity {
   pointer-events: auto;
   visibility: visible;
   opacity: 1;
@@ -694,7 +677,8 @@ body {
 #stage[data-view='id'] .locker--mine .locker-door,
 #stage[data-view='architecture'] .locker--mine .locker-door,
 #stage[data-view='art'] .locker--mine .locker-door,
-#stage[data-view='photo'] .locker--mine .locker-door {
+#stage[data-view='photo'] .locker--mine .locker-door,
+#stage[data-view='music'] .locker--mine .locker-door {
   pointer-events: none;
 }
 
@@ -702,7 +686,14 @@ body {
 #stage[data-view='id'] .locker--mine .object--id,
 #stage[data-view='architecture'] .locker--mine .object--id,
 #stage[data-view='art'] .locker--mine .object--id,
-#stage[data-view='photo'] .locker--mine .object--id {
+#stage[data-view='photo'] .locker--mine .object--id,
+#stage[data-view='music'] .locker--mine .object--id,
+#stage[data-view='open'] .locker--mine .object--music,
+#stage[data-view='id'] .locker--mine .object--music,
+#stage[data-view='architecture'] .locker--mine .object--music,
+#stage[data-view='art'] .locker--mine .object--music,
+#stage[data-view='photo'] .locker--mine .object--music,
+#stage[data-view='music'] .locker--mine .object--music {
   pointer-events: auto;
 }
 
@@ -710,7 +701,8 @@ body {
 #stage[data-view='id'] .locker--mine .cavity .object,
 #stage[data-view='architecture'] .locker--mine .cavity .object,
 #stage[data-view='art'] .locker--mine .cavity .object,
-#stage[data-view='photo'] .locker--mine .cavity .object {
+#stage[data-view='photo'] .locker--mine .cavity .object,
+#stage[data-view='music'] .locker--mine .cavity .object {
   pointer-events: auto;
 }
 
@@ -721,18 +713,29 @@ body {
 
 .object-label {
   position: absolute;
-  top: calc(100% + 5px);
+  top: var(--label-anchor-y, 0%);
+  left: 50%;
+  right: auto;
+  bottom: auto;
   z-index: 4;
   white-space: nowrap;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
   font-size: 10px;
-  font-style: italic;
+  padding: 3px 6px 3px;
+  font-style: normal;
   font-weight: 400;
-  letter-spacing: 0.015em;
+  letter-spacing: 0.075em;
   line-height: 1;
+  text-transform: uppercase;
+  color: #625443;
+  background:
+    repeating-linear-gradient(0deg, rgba(112, 88, 56, 0.025) 0 1px, transparent 1px 3px),
+    linear-gradient(96deg, #eee3cf, #f5ecd9 55%, #eadcc3);
+  border-radius: 1px;
+  box-shadow: 0 1px 2px rgba(69, 52, 34, 0.14);
   opacity: 0;
-  transform: translateY(2px) scale(0.46);
-  transform-origin: center top;
+  transform: translate(-50%, calc(-100% - 2px)) scale(0.42);
+  transform-origin: center bottom;
   text-shadow: 0 1px rgba(255, 255, 255, 0.62);
   pointer-events: none;
   transition:
@@ -743,146 +746,212 @@ body {
 .object:hover .object-label,
 .object:focus-visible .object-label {
   opacity: 1;
-  transform: translateY(0) scale(0.46);
+  transform: translate(-50%, calc(-100% - 4px)) scale(0.42);
 }
 
 .object--id {
-  top: 14px;
+  top: 11%;
   left: 50%;
+  width: 105%;
+  height: 43%;
   transform: translateX(-50%);
   z-index: 4;
+  justify-content: center;
+  transition: transform 0.2s ease;
 }
 
 .object--id .object-label {
-  top: calc(100% + 3px);
+  top: 18%;
+  left: calc(68% + 3px);
+  transform: scale(0.42);
+  transform-origin: left top;
 }
 
-.id-hook {
-  width: 10px;
-  height: 6px;
-  border: 2px solid #8a9296;
-  border-bottom: 0;
-  border-radius: 8px 8px 0 0;
-}
-
-.id-strap {
-  width: 3px;
-  height: 10px;
-  background: #6d757a;
-}
-
-.id-card {
-  width: 50px;
-  height: 70px;
-  transform: rotate(-3deg);
-  filter: drop-shadow(1px 3px 3px rgba(40, 32, 24, 0.28));
-}
-
-.id-card__face {
-  display: grid;
-  grid-template-rows: 32px 1fr;
-  height: 100%;
-  padding: 5px;
-  background: #f6f1e8;
-  border: 1px solid #cfc3b2;
-}
-
-.id-card__photo {
-  background: linear-gradient(180deg, #c5cdd3, #adb8bf);
-}
-
-.id-card__kicker {
-  display: block;
-  font-size: 8px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #8a7b6c;
-}
-
-.id-card__name {
-  display: block;
-  font-family: var(--serif);
-  font-size: 12px;
-}
-
-.id-card__line {
-  display: block;
-  height: 2px;
-  margin-top: 4px;
-  background: #d3c7b8;
-}
-
-.id-card__line--short {
-  width: 60%;
-}
-
-.object--model {
-  left: -3%;
-  bottom: calc(51% - 15px - var(--interior-drop) - 2%);
-  z-index: 4;
-  width: 61%;
-  height: 35%;
-}
-
-.object--model .object-label {
+.object--id .object__image {
+  position: relative;
+  left: auto;
   top: auto;
-  bottom: -8px;
-  left: 13%;
+  width: 100%;
+  height: auto;
+  transform: none;
+  filter: none;
+  image-rendering: auto;
 }
 
-.object--model .object__image {
-  filter: saturate(0.72) contrast(0.94) sepia(0.07) drop-shadow(2px 3px 2px rgba(62, 47, 30, 0.22));
+.object--id:hover .object__image,
+.object--id:focus-visible .object__image {
+  transform: none;
+  filter:
+    drop-shadow(1px 0 0 rgba(255, 255, 255, 0.82))
+    drop-shadow(-1px 0 0 rgba(255, 255, 255, 0.82))
+    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.82))
+    drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.82));
 }
 
-.object--model:hover .object__image,
-.object--model:focus-visible .object__image {
-  filter: saturate(0.78) contrast(0.98) sepia(0.05) drop-shadow(2px 4px 3px rgba(62, 47, 30, 0.28));
+.object--id:hover,
+.object--id:focus-visible {
+  transform: translate(-50%, -1px);
+}
+
+.object--id:hover .object-label,
+.object--id:focus-visible .object-label {
+  transform: scale(0.42);
+}
+
+.object--id::after {
+  left: 35%;
+  right: 35%;
+  bottom: 12%;
+  height: 3%;
+  background: rgba(63, 48, 30, 0.16);
+  filter: blur(0.6px);
+}
+
+.object--music {
+  top: 38%;
+  left: 66%;
+  width: 110%;
+  height: 70%;
+  transform: translateX(-50%);
+  z-index: 3;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.object--music .object-label {
+  top: 20%;
+  left: calc(69% + 3px);
+  transform: scale(0.42);
+  transform-origin: left top;
+}
+
+.object--music .object__image {
+  position: relative;
+  left: auto;
+  top: auto;
+  width: 100%;
+  height: auto;
+  transform: none;
+  filter: none;
+  image-rendering: auto;
+}
+
+.object--music:hover .object__image,
+.object--music:focus-visible .object__image {
+  transform: none;
+  filter:
+    drop-shadow(1px 0 0 rgba(255, 255, 255, 0.82))
+    drop-shadow(-1px 0 0 rgba(255, 255, 255, 0.82))
+    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.82))
+    drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.82));
+}
+
+.object--music:hover,
+.object--music:focus-visible {
+  transform: translate(-50%, -1px);
+}
+
+.object--music:hover .object-label,
+.object--music:focus-visible .object-label {
+  transform: scale(0.42);
+}
+
+.object--music::after {
+  left: 35%;
+  right: 35%;
+  top: 39%;
+  bottom: auto;
+  height: 2.5%;
+  background: rgba(63, 48, 30, 0.16);
+  filter: blur(0.6px);
+}
+
+.object--books {
+  --label-anchor-y: 41%;
+  right: -22%;
+  bottom: calc(54% - 15px);
+  z-index: 4;
+  width: 88%;
+  height: 55%;
+}
+
+.object--books .object-label {
+  top: var(--label-anchor-y);
+  left: 50%;
+}
+
+.object--books .object__image {
+  filter: drop-shadow(11px 4px 8.4px rgba(0, 0, 0, 0.25));
+}
+
+.object--books:hover .object__image,
+.object--books:focus-visible .object__image {
+  filter:
+    drop-shadow(1px 0 0 rgba(255, 255, 255, 0.82))
+    drop-shadow(-1px 0 0 rgba(255, 255, 255, 0.82))
+    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.82))
+    drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.82))
+    drop-shadow(11px 4px 8.4px rgba(0, 0, 0, 0.25));
+}
+
+.object--books::after {
+  display: none;
 }
 
 .object--art {
-  right: -1%;
-  bottom: calc(3% - var(--interior-drop) - 2%);
+  --label-anchor-y: 8%;
+  right: 4%;
+  bottom: -2%;
   z-index: 4;
-  width: 64%;
-  height: 29%;
+  width: 58%;
+  height: 34%;
 }
 
 .object--art .object-label {
-  top: auto;
-  right: 13%;
-  bottom: -5px;
+  top: var(--label-anchor-y);
+  left: 50%;
 }
 
 .object--art .object__image {
-  filter: saturate(0.75) contrast(0.94) sepia(0.03) drop-shadow(2px 3px 2px rgba(62, 47, 30, 0.2));
+  filter: drop-shadow(1px 2px 1px rgba(62, 47, 30, 0.2));
 }
 
 .object--art:hover .object__image,
 .object--art:focus-visible .object__image {
-  filter: saturate(0.8) contrast(0.97) sepia(0.02) drop-shadow(2px 4px 3px rgba(62, 47, 30, 0.26));
+  filter:
+    drop-shadow(1px 0 0 rgba(255, 255, 255, 0.82))
+    drop-shadow(-1px 0 0 rgba(255, 255, 255, 0.82))
+    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.82))
+    drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.82))
+    drop-shadow(1px 2px 1.5px rgba(62, 47, 30, 0.24));
 }
 
 .object--camera {
-  left: -2%;
-  bottom: calc(-1% - var(--interior-drop));
+  --label-anchor-y: 49%;
+  left: 4%;
+  bottom: calc(54% - 25px);
   z-index: 5;
-  width: 47%;
-  height: 20%;
+  width: 58%;
+  height: 33%;
 }
 
 .object--camera .object-label {
-  top: auto;
-  left: 12%;
-  bottom: -5px;
+  top: var(--label-anchor-y);
+  left: 50%;
 }
 
 .object--camera .object__image {
-  filter: saturate(0.78) brightness(0.96) sepia(0.03) drop-shadow(2px 3px 2px rgba(52, 42, 31, 0.22));
+  filter: drop-shadow(1px 2px 1px rgba(52, 42, 31, 0.22));
 }
 
 .object--camera:hover .object__image,
 .object--camera:focus-visible .object__image {
-  filter: saturate(0.84) brightness(0.98) sepia(0.02) drop-shadow(2px 4px 3px rgba(52, 42, 31, 0.28));
+  filter:
+    drop-shadow(1px 0 0 rgba(255, 255, 255, 0.82))
+    drop-shadow(-1px 0 0 rgba(255, 255, 255, 0.82))
+    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.82))
+    drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.82))
+    drop-shadow(1px 2px 1.5px rgba(52, 42, 31, 0.26));
 }
 
 .content-view {
@@ -901,7 +970,8 @@ body {
 #stage[data-view='id'] .content-view[data-layer='id'],
 #stage[data-view='architecture'] .content-view[data-layer='architecture'],
 #stage[data-view='art'] .content-view[data-layer='art'],
-#stage[data-view='photo'] .content-view[data-layer='photo'] {
+#stage[data-view='photo'] .content-view[data-layer='photo'],
+#stage[data-view='music'] .content-view[data-layer='music'] {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
