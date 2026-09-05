@@ -782,10 +782,10 @@ body {
 .object--id:focus-visible .object__image {
   transform: none;
   filter:
-    drop-shadow(1px 0 0 rgba(255, 255, 255, 0.82))
-    drop-shadow(-1px 0 0 rgba(255, 255, 255, 0.82))
-    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.82))
-    drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.82));
+    drop-shadow(0.5px 0 0 rgba(255, 255, 255, 0.4))
+    drop-shadow(-0.5px 0 0 rgba(255, 255, 255, 0.4))
+    drop-shadow(0 0.5px 0 rgba(255, 255, 255, 0.4))
+    drop-shadow(0 -0.5px 0 rgba(255, 255, 255, 0.4));
 }
 
 .object--id:hover,
@@ -840,10 +840,10 @@ body {
 .object--music:focus-visible .object__image {
   transform: none;
   filter:
-    drop-shadow(1px 0 0 rgba(255, 255, 255, 0.82))
-    drop-shadow(-1px 0 0 rgba(255, 255, 255, 0.82))
-    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.82))
-    drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.82));
+    drop-shadow(0.5px 0 0 rgba(255, 255, 255, 0.4))
+    drop-shadow(-0.5px 0 0 rgba(255, 255, 255, 0.4))
+    drop-shadow(0 0.5px 0 rgba(255, 255, 255, 0.4))
+    drop-shadow(0 -0.5px 0 rgba(255, 255, 255, 0.4));
 }
 
 .object--music:hover,
@@ -880,22 +880,13 @@ body {
   left: 50%;
 }
 
-.object--books .object__image {
-  filter: drop-shadow(11px 4px 8.4px rgba(0, 0, 0, 0.25));
-}
-
 .object--books:hover .object__image,
 .object--books:focus-visible .object__image {
   filter:
-    drop-shadow(1px 0 0 rgba(255, 255, 255, 0.82))
-    drop-shadow(-1px 0 0 rgba(255, 255, 255, 0.82))
-    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.82))
-    drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.82))
-    drop-shadow(11px 4px 8.4px rgba(0, 0, 0, 0.25));
-}
-
-.object--books::after {
-  display: none;
+    drop-shadow(0.5px 0 0 rgba(255, 255, 255, 0.4))
+    drop-shadow(-0.5px 0 0 rgba(255, 255, 255, 0.4))
+    drop-shadow(0 0.5px 0 rgba(255, 255, 255, 0.4))
+    drop-shadow(0 -0.5px 0 rgba(255, 255, 255, 0.4));
 }
 
 .object--art {
@@ -919,10 +910,10 @@ body {
 .object--art:hover .object__image,
 .object--art:focus-visible .object__image {
   filter:
-    drop-shadow(1px 0 0 rgba(255, 255, 255, 0.82))
-    drop-shadow(-1px 0 0 rgba(255, 255, 255, 0.82))
-    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.82))
-    drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.82))
+    drop-shadow(0.5px 0 0 rgba(255, 255, 255, 0.4))
+    drop-shadow(-0.5px 0 0 rgba(255, 255, 255, 0.4))
+    drop-shadow(0 0.5px 0 rgba(255, 255, 255, 0.4))
+    drop-shadow(0 -0.5px 0 rgba(255, 255, 255, 0.4))
     drop-shadow(1px 2px 1.5px rgba(62, 47, 30, 0.24));
 }
 
@@ -947,10 +938,10 @@ body {
 .object--camera:hover .object__image,
 .object--camera:focus-visible .object__image {
   filter:
-    drop-shadow(1px 0 0 rgba(255, 255, 255, 0.82))
-    drop-shadow(-1px 0 0 rgba(255, 255, 255, 0.82))
-    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.82))
-    drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.82))
+    drop-shadow(0.5px 0 0 rgba(255, 255, 255, 0.4))
+    drop-shadow(-0.5px 0 0 rgba(255, 255, 255, 0.4))
+    drop-shadow(0 0.5px 0 rgba(255, 255, 255, 0.4))
+    drop-shadow(0 -0.5px 0 rgba(255, 255, 255, 0.4))
     drop-shadow(1px 2px 1.5px rgba(52, 42, 31, 0.26));
 }
 
