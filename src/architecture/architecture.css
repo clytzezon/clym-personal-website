@@ -1,0 +1,126 @@
+.content-view[data-layer='architecture'] {
+  display: block;
+  padding: 0;
+  background: #dedbd4;
+  transform: scale(1.015);
+  transition:
+    opacity 820ms cubic-bezier(0.22, 0.72, 0.2, 1),
+    visibility 820ms linear,
+    transform 820ms cubic-bezier(0.22, 0.72, 0.2, 1);
+}
+
+#stage[data-view='architecture'] .content-view[data-layer='architecture'] {
+  transform: scale(1);
+}
+
+#stage.is-architecture-leaving .content-view[data-layer='architecture'] {
+  transition:
+    opacity 460ms cubic-bezier(0.32, 0.08, 0.24, 1),
+    visibility 460ms linear,
+    transform 460ms cubic-bezier(0.32, 0.08, 0.24, 1);
+}
+
+.architecture-view {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #dedbd4;
+}
+
+.content-view[data-layer='architecture'] .architecture-title {
+  position: absolute;
+  top: clamp(30px, 4.5vh, 58px);
+  left: 50%;
+  z-index: 2;
+  margin: 0;
+  transform: translateX(-50%);
+  color: #403d38;
+  font-family: var(--serif);
+  font-size: clamp(51.2px, 7.68vw, 124.8px);
+  font-weight: 500;
+  line-height: 0.8;
+  letter-spacing: -0.045em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.architecture-bookshelf {
+  position: absolute;
+  inset: 18% 0 0;
+  cursor: grab;
+  touch-action: pan-y pinch-zoom;
+}
+
+.architecture-bookshelf:active {
+  cursor: grabbing;
+}
+
+.architecture-bookshelf__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.architecture-selection {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  z-index: 2;
+  margin: 0;
+  padding: 7px 11px;
+  transform: translateX(-50%);
+  background: rgba(245, 243, 238, 0.82);
+  color: #514d47;
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.architecture-view > .return-note {
+  position: absolute;
+  top: 20px;
+  right: 26px;
+  z-index: 3;
+  margin: 0;
+  padding: 4px 0;
+  background: transparent;
+}
+
+@media (max-width: 700px) {
+  .content-view[data-layer='architecture'] {
+    padding: 0;
+  }
+
+  .architecture-view {
+    width: 100vw;
+    height: 100svh;
+    min-height: 360px;
+  }
+
+  .content-view[data-layer='architecture'] .architecture-title {
+    top: 64px;
+    font-size: clamp(33.6px, 9.6vw, 56px);
+  }
+
+  .architecture-bookshelf {
+    inset: 22% 0 0;
+  }
+
+  .architecture-selection {
+    bottom: 16px;
+    max-width: calc(100% - 32px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content-view[data-layer='architecture'],
+  #stage.is-architecture-leaving .content-view[data-layer='architecture'] {
+    transition-duration: 0s;
+  }
+}

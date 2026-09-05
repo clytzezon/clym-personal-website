@@ -81,6 +81,22 @@ body {
     filter 0.55s ease;
 }
 
+#stage.is-architecture-entering .hall {
+  transition:
+    transform 1.45s cubic-bezier(0.22, 0.72, 0.2, 1),
+    filter 820ms cubic-bezier(0.22, 0.72, 0.2, 1);
+}
+
+#stage.is-architecture-leaving .hall {
+  transition:
+    transform 1.45s cubic-bezier(0.22, 0.72, 0.2, 1),
+    filter 460ms cubic-bezier(0.32, 0.08, 0.24, 1);
+}
+
+#stage.is-view-transitioning {
+  pointer-events: none;
+}
+
 #stage[data-view='zoomed'] .hall {
   transform: translate(var(--shift-x, 0px), var(--shift-y, 0px)) scale(2.7);
 }
@@ -887,6 +903,19 @@ body {
     drop-shadow(-0.5px 0 0 rgba(255, 255, 255, 0.4))
     drop-shadow(0 0.5px 0 rgba(255, 255, 255, 0.4))
     drop-shadow(0 -0.5px 0 rgba(255, 255, 255, 0.4));
+}
+
+#stage.is-architecture-entering .object--books.is-transition-source .object__image {
+  transform: scale(1.04);
+  transition-duration: 240ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #stage.is-architecture-entering .hall,
+  #stage.is-architecture-leaving .hall,
+  #stage.is-architecture-entering .object--books.is-transition-source .object__image {
+    transition-duration: 0s;
+  }
 }
 
 .object--art {
