@@ -110,11 +110,22 @@ body {
   transform: translate(var(--shift-x, 0px), calc(var(--shift-y, 0px) + 7px)) scale(2.62);
 }
 
+#stage[data-view='architecture-detail'] .hall,
+#stage[data-view='architecture-full'] .hall {
+  transform: translate(var(--shift-x, 0px), calc(var(--shift-y, 0px) + 7px)) scale(2.62);
+}
+
 #stage[data-view='id'] .hall,
 #stage[data-view='architecture'] .hall,
 #stage[data-view='art'] .hall,
 #stage[data-view='photo'] .hall,
 #stage[data-view='music'] .hall {
+  filter: blur(7px) brightness(0.72);
+  pointer-events: none;
+}
+
+#stage[data-view='architecture-detail'] .hall,
+#stage[data-view='architecture-full'] .hall {
   filter: blur(7px) brightness(0.72);
   pointer-events: none;
 }

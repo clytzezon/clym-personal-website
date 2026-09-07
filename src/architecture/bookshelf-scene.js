@@ -5,6 +5,7 @@ import {
   calculateShelfBounds,
 } from './bookshelf-layout.js'
 import { createBookshelfInput } from './bookshelf-input.js'
+import { createBook3D } from './book-3d.js'
 
 const SHELF_STAGE_SCALE = 0.75
 const SHELF_STAGE_Y = -0.08
@@ -31,12 +32,6 @@ class RestrainedSpring {
 
     return this.value
   }
-}
-
-function shadeColor(color, amount) {
-  const source = new THREE.Color(color)
-  source.offsetHSL(0, 0, amount)
-  return source
 }
 
 export function createBookshelfScene({ container, projects, onFocus, onSelect }) {
@@ -73,37 +68,17 @@ export function createBookshelfScene({ container, projects, onFocus, onSelect })
   scene.add(shelf)
 
   const books = projects.map((project, index) => {
-    const { width, height, depth } = project.dimensions
-    const root = new THREE.Group()
-    const geometry = new THREE.BoxGeometry(width, height, depth)
-    const materials = [
-      new THREE.MeshStandardMaterial({ color: shadeColor(project.color, 0.04), roughness: 0.82 }),
-      new THREE.MeshStandardMaterial({ color: shadeColor(project.color, -0.09), roughness: 0.88 }),
-      new THREE.MeshStandardMaterial({ color: shadeColor(project.color, 0.08), roughness: 0.8 }),
-      new THREE.MeshStandardMaterial({ color: shadeColor(project.color, -0.12), roughness: 0.9 }),
-      new THREE.MeshStandardMaterial({ color: project.color, roughness: 0.78 }),
-      new THREE.MeshStandardMaterial({ color: shadeColor(project.color, -0.04), roughness: 0.84 }),
-    ]
-    const mesh = new THREE.Mesh(geometry, materials)
+    const book = createBook3D(project, renderer, { bookIndex: index })
+    const { root, mesh } = book
 
     // The front cover rests on the z=0 baseline plane while the volume extends
     // away from the camera. The live root offset below accounts for the part of
     // this volume that projects left of its spine pivot while folded.
-    mesh.position.set(width / 2, height / 2, -depth / 2)
-    mesh.castShadow = true
-    mesh.receiveShadow = true
-    mesh.userData.bookIndex = index
     root.rotation.y = CLOSED_ROTATION
-    root.add(mesh)
     shelf.add(root)
 
     return {
-      project,
-      dimensions: project.dimensions,
-      root,
-      mesh,
-      geometry,
-      materials,
+      ...book,
       rotation: new RestrainedSpring(CLOSED_ROTATION, 112, 20),
     }
   })
@@ -254,8 +229,7 @@ export function createBookshelfScene({ container, projects, onFocus, onSelect })
       resizeObserver.disconnect()
       timer.dispose()
       books.forEach((book) => {
-        book.geometry.dispose()
-        book.materials.forEach((material) => material.dispose())
+        book.dispose()
       })
       floorGeometry.dispose()
       floorMaterial.dispose()

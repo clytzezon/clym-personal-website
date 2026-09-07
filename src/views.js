@@ -4,6 +4,8 @@ export const VIEW = {
   OPEN: 'open',
   ID: 'id',
   ARCHITECTURE: 'architecture',
+  ARCHITECTURE_DETAIL: 'architecture-detail',
+  ARCHITECTURE_FULL: 'architecture-full',
   ART: 'art',
   PHOTO: 'photo',
   MUSIC: 'music',
@@ -20,6 +22,8 @@ const OBJECT_TO_VIEW = {
 const BACK = {
   [VIEW.ID]: VIEW.OPEN,
   [VIEW.ARCHITECTURE]: VIEW.OPEN,
+  [VIEW.ARCHITECTURE_DETAIL]: VIEW.ARCHITECTURE,
+  [VIEW.ARCHITECTURE_FULL]: VIEW.ARCHITECTURE_DETAIL,
   [VIEW.ART]: VIEW.OPEN,
   [VIEW.PHOTO]: VIEW.OPEN,
   [VIEW.MUSIC]: VIEW.OPEN,
@@ -33,6 +37,8 @@ const HINTS = {
   [VIEW.OPEN]: 'Click an object · empty space to close the door.',
   [VIEW.ID]: 'Click empty space to return.',
   [VIEW.ARCHITECTURE]: 'Click empty space to return to the locker.',
+  [VIEW.ARCHITECTURE_DETAIL]: '',
+  [VIEW.ARCHITECTURE_FULL]: '',
   [VIEW.ART]: 'Click empty space to return to the locker.',
   [VIEW.PHOTO]: 'Click empty space to return to the locker.',
   [VIEW.MUSIC]: 'Click empty space to return to the locker.',
@@ -64,6 +70,8 @@ export function isContentView(view) {
   return (
     view === VIEW.ID ||
     view === VIEW.ARCHITECTURE ||
+    view === VIEW.ARCHITECTURE_DETAIL ||
+    view === VIEW.ARCHITECTURE_FULL ||
     view === VIEW.ART ||
     view === VIEW.PHOTO ||
     view === VIEW.MUSIC

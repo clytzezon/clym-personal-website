@@ -1,3 +1,5 @@
+import xiyuanCoverSource from '../assets/architecture/xiyuan/xiyuan-cover-source.png'
+
 export const architectureProjects = [
   {
     id: 'decorative-left-01',
@@ -34,9 +36,42 @@ export const architectureProjects = [
   {
     id: 'project-01',
     interactive: true,
-    title: 'Project 01',
+    title: '西园集序',
+    chineseTitle: '西园集序',
+    englishTitle: 'WEST GARDEN GATHERING',
+    projectType: '园林建筑设计',
+    projectTypeEnglish: 'Garden Architecture Design',
+    period: '大四上',
+    designType: '园林建筑设计',
+    workType: '课程设计（双人）',
+    personalContribution: [
+      '方案构思',
+      '工图绘制',
+      '效果图手绘表现',
+      '建筑空间分析',
+      '古建形制分析',
+    ],
+    instructor: '汪智洋',
+    description: [
+      '“西园集序”以《西园雅集图》与《西园雅集图记》为蓝本，在宋代文人最盛的江南苏州重构一座承载文人精神理想的私家园林。设计以雅集五场景：观书、听阮、作画、题石、论禅为线索，将诗画中的空间行为转译为建筑形式，串联起一条既具仪式感又富游历趣味的文人流线。通过营造厅堂、高阁、楼台、石林等多样空间形态，回应诗文意境与场景行为的空间需求，构筑出一幅清旷雅逸的精神图景。每一场景不仅是行为的发生地，更承载着文人精神的具象投射，每一处都回应着宋人对“清、雅、幽、静”之境的追求。',
+      '设计不仅再现宋人“以文会友、寄情山水”的文化风貌，更试图还原那种超然物外、林泉高致的隐逸精神，让“西园雅集”穿越时空，于山水之间重构一方文人心灵的栖居之所。',
+    ],
+    detailEnabled: true,
+    fullProjectEnabled: true,
+    coverSource: xiyuanCoverSource,
+    coverPalette: {
+      paper: '#eee9dd',
+      ink: '#282722',
+      accent: '#6d8378',
+      edge: '#d7d0c1',
+      seal: '#9b4f42',
+    },
+    spineText: {
+      chinese: '西园集序',
+      english: 'WEST GARDEN GATHERING',
+    },
     year: '2022',
-    color: '#bd5f4a',
+    color: '#eee9dd',
     dimensions: { width: 1.48, height: 2.42, depth: 0.42 },
   },
   {

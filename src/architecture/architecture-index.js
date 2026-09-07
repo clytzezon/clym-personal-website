@@ -20,8 +20,8 @@ export function createArchitectureIndex({ root, onProjectSelect = () => {} }) {
     }
 
     selection.textContent = selected
-      ? `${project.title} selected · ${project.id}`
-      : `${project.title} · ${project.year}`
+      ? `${project.chineseTitle ?? project.title} selected · ${project.id}`
+      : `${project.chineseTitle ?? project.title} · ${project.englishTitle ?? project.year}`
   }
 
   return {
