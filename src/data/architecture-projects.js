@@ -38,6 +38,7 @@ export const architectureProjects = [
     interactive: true,
     title: '西园集序',
     chineseTitle: '西园集序',
+    subtitle: '基于《西园雅集》典故的江南古典园林建筑设计',
     englishTitle: 'WEST GARDEN GATHERING',
     projectType: '园林建筑设计',
     projectTypeEnglish: 'Garden Architecture Design',

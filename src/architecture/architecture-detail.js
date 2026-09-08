@@ -9,6 +9,7 @@ function setText(root, selector, value) {
 
 function renderProjectContent(root, project) {
   setText(root, '[data-detail-chinese-title]', project.chineseTitle)
+  setText(root, '[data-detail-subtitle]', project.subtitle)
   setText(root, '[data-detail-english-title]', project.englishTitle)
   setText(root, '[data-detail-period]', project.period)
   setText(root, '[data-detail-design-type]', project.designType)

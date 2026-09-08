@@ -1,0 +1,553 @@
+.content-view[data-layer='architecture-full'] {
+  display: block;
+  padding: 0;
+  overflow: hidden;
+  background: #fff;
+  color: #292a27;
+  transition:
+    opacity 700ms cubic-bezier(0.22, 0.72, 0.2, 1),
+    visibility 700ms linear;
+}
+
+#stage[data-view='architecture-full'] .content-view[data-layer='architecture-full'] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+#stage.is-full-project-leaving .content-view[data-layer='architecture-full'] {
+  transition-duration: 520ms;
+}
+
+#stage.is-full-project-entering .book-detail-view {
+  background: #31312b;
+  transition: background 700ms cubic-bezier(0.22, 0.72, 0.2, 1);
+}
+
+.architecture-full-view {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100svh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #fff;
+  scroll-behavior: smooth;
+  scrollbar-color: rgba(102, 123, 113, 0.48) transparent;
+}
+
+.full-project-back {
+  position: fixed;
+  top: 24px;
+  left: 28px;
+  z-index: 12;
+  padding: 7px 0;
+  border: 0;
+  border-bottom: 1px solid rgba(42, 43, 39, 0.32);
+  background: rgba(255, 255, 255, 0.88);
+  color: #3e413c;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+}
+
+.full-project-back:hover,
+.full-project-back:focus-visible {
+  color: #657d72;
+  border-bottom-color: #657d72;
+}
+
+.full-project-publication {
+  position: relative;
+  min-height: 100%;
+}
+
+.full-project-opening {
+  width: min(1180px, calc(100% - 120px));
+  margin: 0 auto;
+  padding: clamp(112px, 15vh, 170px) 0 clamp(62px, 8vh, 94px);
+}
+
+.full-project-opening__kicker {
+  margin: 0 0 26px;
+  color: #6e857a;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+}
+
+.full-project-opening h1 {
+  margin: 0;
+  color: #292a27;
+  font-family: 'TypeLand 康熙字典體 Trial', 'Songti SC', 'Noto Serif CJK SC', SimSun, serif;
+  font-size: clamp(54px, 6vw, 95px);
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: 0.12em;
+}
+
+.full-project-opening__subtitle {
+  margin: 20px 0 0;
+  color: #69675f;
+  font-family: 'Songti SC', 'Noto Serif CJK SC', SimSun, serif;
+  font-size: clamp(12px, 1.05vw, 15px);
+  line-height: 1.65;
+  letter-spacing: 0.1em;
+}
+
+.full-project-opening__english {
+  margin: 16px 0 0;
+  color: #383a36;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(13px, 1.3vw, 18px);
+  letter-spacing: 0.3em;
+}
+
+.full-project-opening__meta {
+  margin: 54px 0 0;
+  color: #7b776d;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 10px;
+  letter-spacing: 0.19em;
+}
+
+.full-project-opening-spread {
+  width: min(1400px, calc(100% - 56px));
+  margin: 0 auto;
+}
+
+.full-project-opening-spread img,
+.full-project-plate img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.full-project-opening-spread img {
+  border: 1px solid rgba(75, 69, 59, 0.08);
+}
+
+.full-project-body {
+  display: grid;
+  grid-template-columns: 106px minmax(0, 1fr);
+  gap: clamp(34px, 5vw, 74px);
+  width: min(1440px, calc(100% - 72px));
+  margin: 0 auto;
+  padding: clamp(140px, 18vw, 250px) 0 180px;
+}
+
+.full-project-rail {
+  position: sticky;
+  top: clamp(110px, 20vh, 190px);
+  align-self: start;
+  padding-left: 24px;
+  font-family: 'Songti SC', 'Noto Serif CJK SC', SimSun, serif;
+}
+
+.full-project-rail::before {
+  position: absolute;
+  top: 4px;
+  bottom: 2px;
+  left: 5px;
+  width: 1px;
+  content: '';
+  background: rgba(72, 73, 67, 0.26);
+  box-shadow:
+    4px 34px 0 rgba(102, 125, 114, 0.26),
+    -3px 86px 0 rgba(102, 125, 114, 0.22),
+    4px 138px 0 rgba(102, 125, 114, 0.24),
+    -3px 190px 0 rgba(102, 125, 114, 0.2);
+}
+
+.full-project-rail > p {
+  margin: 0 0 25px;
+  color: #8a857a;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+}
+
+.full-project-rail ol {
+  display: grid;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.full-project-rail a {
+  position: relative;
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  align-items: baseline;
+  color: #999388;
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  transition: color 240ms ease;
+}
+
+.full-project-rail a::before {
+  position: absolute;
+  top: 50%;
+  left: -24px;
+  width: 0;
+  height: 1px;
+  content: '';
+  background: #687f74;
+  transition: width 240ms ease;
+}
+
+.full-project-rail a span {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 8px;
+  letter-spacing: 0;
+}
+
+.full-project-rail a:hover,
+.full-project-rail a:focus-visible,
+.full-project-rail a.is-active {
+  color: #31332f;
+}
+
+.full-project-rail a.is-active::before {
+  width: 16px;
+}
+
+.full-project-chapters {
+  min-width: 0;
+}
+
+.full-project-chapter {
+  margin: 0 0 clamp(150px, 18vw, 250px);
+  scroll-margin-top: 74px;
+}
+
+.full-project-chapter__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin: 0 0 clamp(44px, 7vw, 86px);
+  padding-top: 3px;
+}
+
+.full-project-chapter__header > span {
+  padding-top: 5px;
+  color: #6c8278;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 20px;
+  letter-spacing: 0.1em;
+}
+
+.full-project-chapter__header h2 {
+  margin: 0;
+  color: #2e302c;
+  font-family: 'TypeLand 康熙字典體 Trial', 'Songti SC', 'Noto Serif CJK SC', SimSun, serif;
+  font-size: clamp(46px, 5vw, 74px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.12em;
+}
+
+.full-project-chapter__header p {
+  margin: 12px 0 0;
+  color: #868075;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 9px;
+  letter-spacing: 0.24em;
+}
+
+.full-project-plate {
+  width: 100%;
+  margin: 0 0 clamp(78px, 10vw, 138px);
+}
+
+.full-project-plate:last-child {
+  margin-bottom: 0;
+}
+
+.full-project-plate figcaption {
+  margin: 0 0 17px;
+  color: #5e6f67;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+}
+
+.full-project-plate a {
+  position: relative;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.full-project-plate--portrait {
+  width: min(78%, 820px);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.full-project-plate--technical img {
+  border: 1px solid rgba(72, 68, 60, 0.08);
+}
+
+.full-project-plate--section {
+  padding: clamp(22px, 4vw, 52px) 0;
+}
+
+.full-project-high-res {
+  position: absolute;
+  right: 0;
+  bottom: -24px;
+  color: #6d7f76;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 8px;
+  letter-spacing: 0.17em;
+}
+
+.full-project-reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 680ms cubic-bezier(0.22, 0.72, 0.2, 1),
+    transform 680ms cubic-bezier(0.22, 0.72, 0.2, 1);
+}
+
+.full-project-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.full-project-scenes {
+  margin: 0 0 clamp(86px, 11vw, 148px);
+}
+
+.full-project-scenes__group {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(22px, 3vw, 46px);
+  padding: clamp(28px, 4vw, 54px) clamp(12px, 2vw, 28px);
+}
+
+.full-project-scenes__group + .full-project-scenes__group {
+  margin-top: clamp(56px, 8vw, 104px);
+}
+
+.full-project-scene {
+  min-width: 0;
+  margin: 0;
+}
+
+.full-project-scene.full-project-reveal {
+  transform: translateY(16px);
+  transition-delay: var(--scene-delay, 0ms);
+  transition-duration: 660ms;
+}
+
+.full-project-scene.full-project-reveal.is-visible {
+  transform: translateY(0);
+}
+
+.full-project-scene__image {
+  overflow: hidden;
+}
+
+.full-project-scene img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 420ms cubic-bezier(0.22, 0.72, 0.2, 1);
+}
+
+.full-project-scene figcaption {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  margin-top: 13px;
+  color: #3f413d;
+  font-family: 'Songti SC', 'Noto Serif CJK SC', SimSun, serif;
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 240ms ease,
+    transform 240ms ease;
+}
+
+.full-project-scene figcaption span {
+  color: #82958c;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+}
+
+.full-project-ending {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-top: 28px;
+  border-top: 1px solid rgba(73, 71, 65, 0.24);
+  color: #535650;
+}
+
+.full-project-ending span {
+  font-family: 'TypeLand 康熙字典體 Trial', 'Songti SC', 'Noto Serif CJK SC', SimSun, serif;
+  font-size: 22px;
+  letter-spacing: 0.14em;
+}
+
+.full-project-ending p {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 8px;
+  letter-spacing: 0.24em;
+}
+
+@media (max-width: 1050px) {
+  .full-project-opening {
+    width: min(900px, calc(100% - 88px));
+  }
+
+  .full-project-body {
+    grid-template-columns: 82px minmax(0, 1fr);
+    gap: 28px;
+    width: calc(100% - 48px);
+  }
+
+  .full-project-rail {
+    padding-left: 20px;
+  }
+
+  .full-project-rail a {
+    grid-template-columns: 16px 1fr;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 760px) {
+  .full-project-back {
+    top: 16px;
+    left: 18px;
+  }
+
+  .full-project-opening {
+    width: calc(100% - 42px);
+    padding-top: 104px;
+  }
+
+  .full-project-opening h1 {
+    font-size: clamp(45px, 14.25vw, 69px);
+  }
+
+  .full-project-opening-spread {
+    width: calc(100% - 20px);
+  }
+
+  .full-project-body {
+    display: block;
+    width: calc(100% - 28px);
+    padding-top: 96px;
+  }
+
+  .full-project-rail {
+    top: 0;
+    z-index: 8;
+    margin: 0 -2px 80px;
+    padding: 14px 4px 13px;
+    background: rgba(255, 255, 255, 0.94);
+    border-bottom: 1px solid rgba(72, 73, 67, 0.14);
+    backdrop-filter: blur(8px);
+  }
+
+  .full-project-rail::before,
+  .full-project-rail > p,
+  .full-project-rail a::before,
+  .full-project-rail a span {
+    display: none;
+  }
+
+  .full-project-rail ol {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .full-project-rail a {
+    display: block;
+    font-size: 13px;
+  }
+
+  .full-project-rail a.is-active {
+    color: #597166;
+  }
+
+  .full-project-scenes__group {
+    gap: 12px;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .full-project-plate--portrait {
+    width: 92%;
+  }
+}
+
+@media (max-width: 560px) {
+  .full-project-scenes__group {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .full-project-scene {
+    width: min(78%, 320px);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+@media (hover: hover) {
+  .full-project-scene:hover img {
+    transform: scale(1.008);
+  }
+
+  .full-project-scene:hover figcaption {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (hover: none) {
+  .full-project-scene figcaption {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content-view[data-layer='architecture-full'],
+  #stage.is-full-project-entering .book-detail-view,
+  .full-project-rail a,
+  .full-project-rail a::before,
+  .full-project-reveal {
+    transition-duration: 0s;
+  }
+
+  .architecture-full-view {
+    scroll-behavior: auto;
+  }
+
+  .full-project-reveal,
+  .full-project-scene.full-project-reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .full-project-scene img,
+  .full-project-scene figcaption {
+    transition-duration: 0s;
+  }
+}

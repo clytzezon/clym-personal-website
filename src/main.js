@@ -14,16 +14,20 @@ const stage = document.querySelector('#stage')
 const row = document.querySelector('#locker-row')
 const architectureRoot = document.querySelector('[data-layer="architecture"]')
 const architectureDetailRoot = document.querySelector('[data-layer="architecture-detail"]')
+const architectureFullRoot = document.querySelector('[data-layer="architecture-full"]')
 const ARCHITECTURE_ENTER_DURATION = 820
 const ARCHITECTURE_EXIT_DURATION = 460
 const DETAIL_ENTER_DURATION = 900
 const DETAIL_EMPHASIS_DURATION = 80
 const DETAIL_EXIT_DURATION = 520
-const FULL_PROJECT_TRANSITION_DURATION = 520
+const FULL_PROJECT_ENTER_DURATION = 700
+const FULL_PROJECT_EXIT_DURATION = 520
 let architectureIndex = null
 let architectureImport = null
 let architectureDetail = null
 let architectureDetailImport = null
+let architectureFull = null
+let architectureFullImport = null
 let viewTransitionInProgress = false
 
 function transitionDuration(duration) {
@@ -76,6 +80,19 @@ function ensureArchitectureDetail() {
   return architectureDetailImport
 }
 
+function ensureArchitectureFull() {
+  if (architectureFull) return Promise.resolve(architectureFull)
+
+  architectureFullImport ??= import('./architecture/architecture-full.js').then(
+    ({ createArchitectureFull }) => {
+      architectureFull = createArchitectureFull({ root: architectureFullRoot })
+      return architectureFull
+    },
+  )
+
+  return architectureFullImport
+}
+
 function syncScenes(view) {
   const architectureIsVisible = view === VIEW.ARCHITECTURE
   const detailIsVisible = view === VIEW.ARCHITECTURE_DETAIL
@@ -93,6 +110,8 @@ function syncScenes(view) {
 
   if (detailIsVisible) architectureDetail?.resume()
   else architectureDetail?.pause()
+
+  if (view !== VIEW.ARCHITECTURE_FULL) architectureFull?.pause()
 }
 
 function showView(view) {
@@ -166,12 +185,18 @@ async function showFullProject() {
   ) return
 
   setTransitionLock(true)
-  architectureDetail.pause()
-  showView(VIEW.ARCHITECTURE_FULL)
+  stage.classList.add('is-full-project-entering')
 
   try {
-    await wait(FULL_PROJECT_TRANSITION_DURATION)
+    const fullProject = await ensureArchitectureFull()
+    if (!fullProject.prepare(architectureDetail.project)) return
+
+    architectureDetail.pause()
+    showView(VIEW.ARCHITECTURE_FULL)
+    fullProject.activate()
+    await wait(FULL_PROJECT_ENTER_DURATION)
   } finally {
+    stage.classList.remove('is-full-project-entering')
     setTransitionLock(false)
   }
 }
@@ -181,10 +206,11 @@ async function leaveFullProject() {
 
   setTransitionLock(true)
   stage.classList.add('is-full-project-leaving')
+  architectureFull?.pause()
   showView(VIEW.ARCHITECTURE_DETAIL)
 
   try {
-    await wait(FULL_PROJECT_TRANSITION_DURATION)
+    await wait(FULL_PROJECT_EXIT_DURATION)
   } finally {
     stage.classList.remove('is-full-project-leaving')
     setTransitionLock(false)
@@ -280,4 +306,5 @@ window.addEventListener('resize', () => {
 window.addEventListener('beforeunload', () => {
   architectureIndex?.destroy()
   architectureDetail?.destroy()
+  architectureFull?.destroy()
 })
