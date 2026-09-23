@@ -54,7 +54,7 @@
   border-bottom: 1px solid rgba(219, 212, 198, 0.34);
   background: transparent;
   color: #d8d1c3;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--interface-sans);
   font-size: 11px;
   letter-spacing: 0.16em;
   cursor: pointer;
@@ -109,7 +109,7 @@
 .book-detail-kicker {
   margin: 0 0 19px;
   color: #7f968b;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--interface-sans);
   font-size: 10px;
   letter-spacing: 0.24em;
 }
@@ -117,17 +117,32 @@
 .book-detail-copy h1 {
   margin: 0;
   color: #f0eadf;
-  font-family: 'TypeLand 康熙字典體 Trial', 'Songti SC', 'Noto Serif CJK SC', SimSun, serif;
+  font-family: var(--interface-sans);
   font-size: clamp(42px, 3.9vw, 63px);
   font-weight: 500;
   line-height: 0.94;
   letter-spacing: 0.1em;
 }
 
+.book-detail-view[data-project-theme='city-theater'] .book-detail-copy h1,
+.book-detail-view[data-project-theme='city-theater'] .book-detail-subtitle,
+.book-detail-view[data-project-theme='city-theater'] .book-detail-meta dt,
+.book-detail-view[data-project-theme='city-theater'] .book-detail-meta dd,
+.book-detail-view[data-project-theme='city-theater'] .book-detail-description h2,
+.book-detail-view[data-project-theme='city-theater'] .book-detail-description p {
+  font-family: var(--interface-sans);
+}
+
+.book-detail-view[data-project-theme='city-theater'] .book-detail-kicker,
+.book-detail-view[data-project-theme='city-theater'] .book-detail-meta dt,
+.book-detail-view[data-project-theme='city-theater'] .book-detail-description h2 {
+  color: #a87964;
+}
+
 .book-detail-subtitle {
   margin: 15px 0 0;
   color: #aaa396;
-  font-family: 'Songti SC', 'Noto Serif CJK SC', SimSun, serif;
+  font-family: var(--interface-sans);
   font-size: 12px;
   line-height: 1.65;
   letter-spacing: 0.08em;
@@ -136,7 +151,7 @@
 .book-detail-english-title {
   margin: 14px 0 0;
   color: #c9c1b2;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--interface-sans);
   font-size: 14px;
   letter-spacing: 0.25em;
 }
@@ -162,7 +177,7 @@
 .book-detail-meta dt {
   margin: 0 0 5px;
   color: #789084;
-  font-family: 'Songti SC', 'Noto Serif CJK SC', SimSun, serif;
+  font-family: var(--interface-sans);
   font-size: 11px;
   letter-spacing: 0.13em;
 }
@@ -170,7 +185,7 @@
 .book-detail-meta dd {
   margin: 0;
   color: #e4ddd0;
-  font-family: 'Songti SC', 'Noto Serif CJK SC', SimSun, serif;
+  font-family: var(--interface-sans);
   font-size: 13px;
   line-height: 1.7;
 }
@@ -182,7 +197,7 @@
 .book-detail-description h2 {
   margin: 0 0 12px;
   color: #82998e;
-  font-family: 'Songti SC', 'Noto Serif CJK SC', SimSun, serif;
+  font-family: var(--interface-sans);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -191,7 +206,7 @@
 .book-detail-description p {
   margin: 0 0 12px;
   color: #cfc8bc;
-  font-family: 'Songti SC', 'Noto Serif CJK SC', SimSun, serif;
+  font-family: var(--interface-sans);
   font-size: 13px;
   line-height: 1.78;
   text-align: justify;
@@ -205,7 +220,7 @@
   border-bottom: 1px solid #71897e;
   background: transparent;
   color: #eee7da;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--interface-sans);
   font-size: 12px;
   letter-spacing: 0.18em;
   cursor: pointer;

@@ -46,7 +46,7 @@
   border-bottom: 1px solid rgba(42, 43, 39, 0.32);
   background: rgba(255, 255, 255, 0.88);
   color: #3e413c;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--interface-sans);
   font-size: 10px;
   letter-spacing: 0.16em;
   cursor: pointer;
@@ -64,6 +64,12 @@
   min-height: 100%;
 }
 
+.full-project-publication--city-theater {
+  background: #fff;
+  --full-project-accent: #ad6f55;
+  --full-project-secondary: #647681;
+}
+
 .full-project-opening {
   width: min(1180px, calc(100% - 120px));
   margin: 0 auto;
@@ -73,7 +79,7 @@
 .full-project-opening__kicker {
   margin: 0 0 26px;
   color: #6e857a;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--interface-sans);
   font-size: 10px;
   letter-spacing: 0.25em;
 }
@@ -81,7 +87,7 @@
 .full-project-opening h1 {
   margin: 0;
   color: #292a27;
-  font-family: 'TypeLand 康熙字典體 Trial', 'Songti SC', 'Noto Serif CJK SC', SimSun, serif;
+  font-family: var(--interface-sans);
   font-size: clamp(54px, 6vw, 95px);
   font-weight: 500;
   line-height: 0.92;
@@ -91,7 +97,7 @@
 .full-project-opening__subtitle {
   margin: 20px 0 0;
   color: #69675f;
-  font-family: 'Songti SC', 'Noto Serif CJK SC', SimSun, serif;
+  font-family: var(--interface-sans);
   font-size: clamp(12px, 1.05vw, 15px);
   line-height: 1.65;
   letter-spacing: 0.1em;
@@ -100,7 +106,7 @@
 .full-project-opening__english {
   margin: 16px 0 0;
   color: #383a36;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--interface-sans);
   font-size: clamp(13px, 1.3vw, 18px);
   letter-spacing: 0.3em;
 }
@@ -108,21 +114,66 @@
 .full-project-opening__meta {
   margin: 54px 0 0;
   color: #7b776d;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--interface-sans);
   font-size: 10px;
   letter-spacing: 0.19em;
 }
 
+.full-project-publication--city-theater .full-project-opening {
+  padding-bottom: clamp(48px, 7vh, 82px);
+}
+
+.full-project-publication--city-theater .full-project-opening__kicker,
+.full-project-publication--city-theater .full-project-opening__english,
+.full-project-publication--city-theater .full-project-opening__meta,
+.full-project-publication--city-theater .full-project-opening__subtitle,
+.full-project-publication--city-theater .full-project-chapter__header h2,
+.full-project-publication--city-theater .full-project-chapter__header p,
+.full-project-publication--city-theater .full-project-rail,
+.full-project-publication--city-theater .full-project-intro {
+  font-family: var(--interface-sans);
+}
+
+.full-project-publication--city-theater .full-project-opening h1 {
+  font-family: var(--interface-sans);
+  font-size: clamp(48px, 5.4vw, 82px);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.full-project-publication--city-theater .full-project-opening__kicker,
+.full-project-publication--city-theater .full-project-chapter__header > span {
+  color: var(--full-project-accent);
+}
+
+.full-project-publication--city-theater .full-project-opening__subtitle {
+  max-width: 830px;
+  color: #64696c;
+  font-size: clamp(12px, 1vw, 14px);
+  letter-spacing: 0.045em;
+}
+
+.full-project-publication--city-theater .full-project-opening__english {
+  color: #35424a;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+}
+
 .full-project-opening-spread {
-  width: min(1400px, calc(100% - 56px));
+  width: min(1120px, calc(80% - 45px));
   margin: 0 auto;
 }
 
 .full-project-opening-spread img,
-.full-project-plate img {
+.full-project-plate img,
+.full-project-horizontal img {
   display: block;
-  width: 100%;
   height: auto;
+}
+
+.full-project-opening-spread img,
+.full-project-plate img {
+  width: 100%;
 }
 
 .full-project-opening-spread img {
@@ -138,12 +189,16 @@
   padding: clamp(140px, 18vw, 250px) 0 180px;
 }
 
+.full-project-body--direct {
+  padding-top: clamp(52px, 7vw, 96px);
+}
+
 .full-project-rail {
   position: sticky;
   top: clamp(110px, 20vh, 190px);
   align-self: start;
   padding-left: 24px;
-  font-family: 'Songti SC', 'Noto Serif CJK SC', SimSun, serif;
+  font-family: var(--interface-sans);
 }
 
 .full-project-rail::before {
@@ -164,7 +219,7 @@
 .full-project-rail > p {
   margin: 0 0 25px;
   color: #8a857a;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--interface-sans);
   font-size: 8px;
   letter-spacing: 0.2em;
 }
@@ -201,7 +256,7 @@
 }
 
 .full-project-rail a span {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--interface-sans);
   font-size: 8px;
   letter-spacing: 0;
 }
@@ -214,6 +269,22 @@
 
 .full-project-rail a.is-active::before {
   width: 16px;
+}
+
+.full-project-publication--city-theater .full-project-rail a.is-active,
+.full-project-publication--city-theater .full-project-rail a:hover,
+.full-project-publication--city-theater .full-project-rail a:focus-visible {
+  color: #303a40;
+}
+
+.full-project-publication--city-theater .full-project-rail a {
+  grid-template-columns: 19px 1fr;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+}
+
+.full-project-publication--city-theater .full-project-rail a.is-active::before {
+  background: var(--full-project-accent);
 }
 
 .full-project-chapters {
@@ -236,16 +307,16 @@
 .full-project-chapter__header > span {
   padding-top: 5px;
   color: #6c8278;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 20px;
+  font-family: var(--interface-sans);
+  font-size: 15px;
   letter-spacing: 0.1em;
 }
 
 .full-project-chapter__header h2 {
   margin: 0;
   color: #2e302c;
-  font-family: 'TypeLand 康熙字典體 Trial', 'Songti SC', 'Noto Serif CJK SC', SimSun, serif;
-  font-size: clamp(46px, 5vw, 74px);
+  font-family: var(--interface-sans);
+  font-size: clamp(35px, 3.75vw, 56px);
   font-weight: 500;
   line-height: 1;
   letter-spacing: 0.12em;
@@ -254,14 +325,29 @@
 .full-project-chapter__header p {
   margin: 12px 0 0;
   color: #868075;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--interface-sans);
   font-size: 9px;
   letter-spacing: 0.24em;
 }
 
+.full-project-publication--city-theater .full-project-chapter__header h2 {
+  color: #2f383d;
+  font-size: clamp(32px, 3.45vw, 51px);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+
+.full-project-publication--city-theater .full-project-chapter__header p {
+  color: #78838a;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+}
+
 .full-project-plate {
-  width: 100%;
+  width: 80%;
   margin: 0 0 clamp(78px, 10vw, 138px);
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .full-project-plate:last-child {
@@ -269,11 +355,13 @@
 }
 
 .full-project-plate figcaption {
-  margin: 0 0 17px;
+  margin: 0 0 22px;
   color: #5e6f67;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 10px;
-  letter-spacing: 0.2em;
+  font-family: var(--interface-sans);
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0.08em;
 }
 
 .full-project-plate a {
@@ -284,9 +372,13 @@
 }
 
 .full-project-plate--portrait {
-  width: min(78%, 820px);
+  width: min(62.4%, 656px);
   margin-right: auto;
   margin-left: auto;
+}
+
+.full-project-plate--district {
+  width: 80%;
 }
 
 .full-project-plate--technical img {
@@ -297,14 +389,90 @@
   padding: clamp(22px, 4vw, 52px) 0;
 }
 
+.full-project-plate--major.full-project-reveal {
+  transform: translateY(24px) scale(1.015);
+}
+
+.full-project-plate--major.full-project-reveal.is-visible {
+  transform: translateY(0) scale(1);
+}
+
 .full-project-high-res {
   position: absolute;
   right: 0;
   bottom: -24px;
   color: #6d7f76;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--interface-sans);
   font-size: 8px;
   letter-spacing: 0.17em;
+}
+
+.full-project-intro {
+  width: min(760px, 82%);
+  margin: clamp(18px, 3vw, 40px) auto 0;
+  padding-left: clamp(22px, 3vw, 42px);
+  border-left: 2px solid rgba(173, 111, 85, 0.52);
+}
+
+.full-project-intro p {
+  margin: 0;
+  color: #555d61;
+  font-size: 14px;
+  line-height: 1.95;
+  letter-spacing: 0.035em;
+  text-align: justify;
+}
+
+.full-project-intro p + p {
+  margin-top: 15px;
+}
+
+.full-project-horizontal {
+  width: 80%;
+  margin: 0 0 clamp(88px, 11vw, 148px);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.full-project-horizontal figcaption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0 0 22px;
+  color: #667780;
+  font-family: var(--interface-sans);
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0.07em;
+}
+
+.full-project-horizontal__cue {
+  color: #a66e57;
+  font-size: 8px;
+  white-space: nowrap;
+}
+
+.full-project-horizontal__viewport {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  outline: none;
+  overscroll-behavior-inline: contain;
+  scrollbar-color: rgba(101, 118, 128, 0.5) transparent;
+  scrollbar-width: thin;
+  touch-action: pan-x pan-y;
+}
+
+.full-project-horizontal__viewport:focus-visible {
+  box-shadow: 0 0 0 1px rgba(173, 111, 85, 0.66);
+}
+
+.full-project-horizontal img {
+  width: auto;
+  max-width: none;
+  height: clamp(345px, 46.5svh, 540px);
 }
 
 .full-project-reveal {
@@ -368,7 +536,7 @@
   align-items: baseline;
   margin-top: 13px;
   color: #3f413d;
-  font-family: 'Songti SC', 'Noto Serif CJK SC', SimSun, serif;
+  font-family: var(--interface-sans);
   font-size: 14px;
   letter-spacing: 0.16em;
   opacity: 0;
@@ -380,7 +548,7 @@
 
 .full-project-scene figcaption span {
   color: #82958c;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--interface-sans);
   font-size: 8px;
   letter-spacing: 0.08em;
 }
@@ -395,14 +563,14 @@
 }
 
 .full-project-ending span {
-  font-family: 'TypeLand 康熙字典體 Trial', 'Songti SC', 'Noto Serif CJK SC', SimSun, serif;
+  font-family: var(--interface-sans);
   font-size: 22px;
   letter-spacing: 0.14em;
 }
 
 .full-project-ending p {
   margin: 0;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--interface-sans);
   font-size: 8px;
   letter-spacing: 0.24em;
 }
@@ -444,13 +612,17 @@
   }
 
   .full-project-opening-spread {
-    width: calc(100% - 20px);
+    width: calc(80% - 16px);
   }
 
   .full-project-body {
     display: block;
     width: calc(100% - 28px);
     padding-top: 96px;
+  }
+
+  .full-project-body--direct {
+    padding-top: 46px;
   }
 
   .full-project-rail {
@@ -492,7 +664,24 @@
   }
 
   .full-project-plate--portrait {
-    width: 92%;
+    width: 73.6%;
+  }
+
+  .full-project-plate--district {
+    width: 80%;
+  }
+
+  .full-project-intro {
+    width: calc(100% - 18px);
+    padding-left: 18px;
+  }
+
+  .full-project-intro p {
+    font-size: 13px;
+  }
+
+  .full-project-horizontal img {
+    height: clamp(262px, 42svh, 390px);
   }
 }
 
@@ -541,7 +730,8 @@
   }
 
   .full-project-reveal,
-  .full-project-scene.full-project-reveal {
+  .full-project-scene.full-project-reveal,
+  .full-project-plate--major.full-project-reveal {
     opacity: 1;
     transform: none;
   }

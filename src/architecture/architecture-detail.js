@@ -8,14 +8,22 @@ function setText(root, selector, value) {
 }
 
 function renderProjectContent(root, project) {
+  const view = root.querySelector('.book-detail-view')
+  if (view) view.dataset.projectTheme = project.detailTheme ?? 'default'
+
+  setText(root, '[data-detail-kicker]', `ARCHITECTURE · BOOK ${project.bookNumber}`)
   setText(root, '[data-detail-chinese-title]', project.chineseTitle)
   setText(root, '[data-detail-subtitle]', project.subtitle)
   setText(root, '[data-detail-english-title]', project.englishTitle)
   setText(root, '[data-detail-period]', project.period)
   setText(root, '[data-detail-design-type]', project.designType)
+  setText(root, '[data-detail-area]', project.area)
   setText(root, '[data-detail-work-type]', project.workType)
   setText(root, '[data-detail-contribution]', project.personalContribution.join(' / '))
   setText(root, '[data-detail-instructor]', project.instructor)
+
+  const areaRow = root.querySelector('[data-detail-area-row]')
+  if (areaRow) areaRow.hidden = !project.area
 
   const description = root.querySelector('[data-detail-description]')
   if (description) {

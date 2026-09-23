@@ -8,6 +8,7 @@ const CHINESE_DISPLAY_FONT =
   '"TypeLand 康熙字典體 Trial", "Songti SC", "Noto Serif CJK SC", SimSun, serif'
 const CHINESE_TEXT_FONT = '"Songti SC", "Noto Serif CJK SC", SimSun, serif'
 const LATIN_FONT = 'Georgia, "Times New Roman", serif'
+const SANS_FONT = '"Source Han Sans SC", "Noto Sans SC", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif'
 
 function makeCanvas(width, height) {
   const canvas = document.createElement('canvas')
@@ -137,7 +138,7 @@ function configureTexture(texture, renderer) {
   return texture
 }
 
-function drawFrontTypography(context, project) {
+function drawXiyuanFrontTypography(context, project) {
   const { ink, accent, seal } = project.coverPalette
 
   context.textAlign = 'left'
@@ -174,7 +175,7 @@ function drawFrontTypography(context, project) {
   context.textAlign = 'left'
   context.fillStyle = ink
   context.font = `500 39px ${LATIN_FONT}`
-  context.fillText('01', 106, 2160)
+  context.fillText(project.bookNumber, 106, 2160)
   context.fillStyle = accent
   context.fillRect(174, 2180, 760, 2)
 
@@ -186,6 +187,118 @@ function drawFrontTypography(context, project) {
   drawSeal(context, 1244, 2143, seal)
 }
 
+function drawCityTheaterArtwork(context, image) {
+  const panel = { x: 84, y: 590, width: 1232, height: 1270 }
+  const sourceWidth = image.height * (panel.width / panel.height)
+  const sourceX = (image.width - sourceWidth) * 0.52
+
+  context.save()
+  context.beginPath()
+  context.rect(panel.x, panel.y, panel.width, panel.height)
+  context.clip()
+  context.fillStyle = '#53646d'
+  context.fillRect(panel.x, panel.y, panel.width, panel.height)
+  context.filter = 'saturate(0.58) contrast(1.1) brightness(0.96)'
+  context.drawImage(
+    image,
+    sourceX,
+    0,
+    sourceWidth,
+    image.height,
+    panel.x,
+    panel.y,
+    panel.width,
+    panel.height,
+  )
+  context.filter = 'none'
+
+  const wash = context.createLinearGradient(panel.x, panel.y, panel.x + panel.width, panel.y)
+  wash.addColorStop(0, 'rgba(243,242,237,0.34)')
+  wash.addColorStop(0.27, 'rgba(243,242,237,0.07)')
+  wash.addColorStop(1, 'rgba(40,48,56,0.12)')
+  context.fillStyle = wash
+  context.fillRect(panel.x, panel.y, panel.width, panel.height)
+
+  context.globalAlpha = 0.86
+  context.fillStyle = '#283038'
+  context.fillRect(panel.x, panel.y + panel.height - 82, panel.width, 82)
+  context.globalAlpha = 1
+  context.fillStyle = '#f3f2ed'
+  context.font = `500 18px ${SANS_FONT}`
+  context.textAlign = 'left'
+  context.textBaseline = 'middle'
+  drawTrackedText(context, 'BEIBIN ROAD 1862 · URBAN REGENERATION', panel.x + 30, panel.y + panel.height - 40, 4)
+  context.restore()
+
+  context.save()
+  context.strokeStyle = 'rgba(40,48,56,0.48)'
+  context.lineWidth = 2
+  context.strokeRect(panel.x, panel.y, panel.width, panel.height)
+  context.fillStyle = '#b66f50'
+  context.fillRect(panel.x, panel.y - 13, 258, 13)
+  context.restore()
+}
+
+function drawCityTheaterFrontTypography(context, project) {
+  const { ink, accent, secondary } = project.coverPalette
+
+  context.textAlign = 'left'
+  context.textBaseline = 'top'
+  context.fillStyle = secondary
+  context.font = `500 20px ${SANS_FONT}`
+  drawTrackedText(context, `ARCHITECTURE MONOGRAPH · BOOK ${project.bookNumber}`, 86, 86, 4)
+
+  context.save()
+  context.globalAlpha = 0.09
+  context.fillStyle = accent
+  context.textAlign = 'right'
+  context.font = `600 184px ${SANS_FONT}`
+  context.fillText(project.bookNumber, 1316, 72)
+  context.restore()
+
+  context.fillStyle = ink
+  context.font = `600 118px ${SANS_FONT}`
+  drawTrackedText(context, project.chineseTitle, 82, 158, 14)
+
+  context.fillStyle = secondary
+  context.font = `500 41px ${SANS_FONT}`
+  drawTrackedText(context, project.englishTitle, 86, 326, 9)
+
+  context.fillStyle = accent
+  context.fillRect(86, 425, 212, 7)
+  context.fillStyle = secondary
+  context.font = `500 21px ${SANS_FONT}`
+  drawTrackedText(context, 'XYZT AXIS SYSTEM · URBAN DESIGN', 86, 468, 4)
+
+  context.fillStyle = ink
+  context.font = `600 44px ${SANS_FONT}`
+  context.fillText(project.bookNumber, 86, 2116)
+  context.fillStyle = accent
+  context.fillRect(168, 2146, 802, 3)
+
+  context.fillStyle = secondary
+  context.textAlign = 'right'
+  context.font = `500 17px ${SANS_FONT}`
+  drawTrackedText(context, '59.2 HA', 1314, 2108, 4)
+  drawTrackedText(context, 'URBAN REGENERATION', 1314, 2140, 3)
+}
+
+function drawArchiveFrontTypography(context, project) {
+  const { ink, accent } = project.coverPalette
+
+  context.fillStyle = accent
+  context.fillRect(98, 104, 5, 2080)
+  context.textAlign = 'left'
+  context.textBaseline = 'top'
+  context.fillStyle = ink
+  context.font = `600 82px ${SANS_FONT}`
+  context.fillText(project.chineseTitle, 158, 188)
+  context.font = `500 22px ${SANS_FONT}`
+  drawTrackedText(context, `ARCHITECTURE · BOOK ${project.bookNumber}`, 160, 326, 5)
+  context.font = `600 42px ${SANS_FONT}`
+  context.fillText(project.bookNumber, 160, 2082)
+}
+
 function createFrontCoverTexture(project, renderer, onUpdate) {
   const canvas = makeCanvas(COVER_WIDTH, COVER_HEIGHT)
   const context = canvas.getContext('2d')
@@ -194,22 +307,27 @@ function createFrontCoverTexture(project, renderer, onUpdate) {
   context.fillStyle = paper
   context.fillRect(0, 0, COVER_WIDTH, COVER_HEIGHT)
   addPaperTexture(context, COVER_WIDTH, COVER_HEIGHT, ink, accent)
-  drawFrontTypography(context, project)
+  if (project.coverStyle === 'city-theater') drawCityTheaterFrontTypography(context, project)
+  else if (project.coverStyle === 'archive') drawArchiveFrontTypography(context, project)
+  else drawXiyuanFrontTypography(context, project)
 
   const texture = configureTexture(new THREE.CanvasTexture(canvas), renderer)
-  const image = new Image()
-  image.decoding = 'async'
-  image.onload = () => {
-    drawIntegratedArtwork(context, image, paper)
-    texture.needsUpdate = true
-    onUpdate?.()
+  if (project.coverSource) {
+    const image = new Image()
+    image.decoding = 'async'
+    image.onload = () => {
+      if (project.coverStyle === 'city-theater') drawCityTheaterArtwork(context, image)
+      else drawIntegratedArtwork(context, image, paper)
+      texture.needsUpdate = true
+      onUpdate?.()
+    }
+    image.src = project.coverSource
   }
-  image.src = project.coverSource
 
   return texture
 }
 
-function createSpineTexture(project, renderer) {
+function createXiyuanSpineTexture(project, renderer) {
   const canvas = makeCanvas(SPINE_WIDTH, SPINE_HEIGHT)
   const context = canvas.getContext('2d')
   const { paper, ink, accent } = project.coverPalette
@@ -248,7 +366,7 @@ function createSpineTexture(project, renderer) {
   context.fillRect(158, 2126, 104, 2)
   context.fillStyle = ink
   context.font = `42px ${LATIN_FONT}`
-  context.fillText('01', SPINE_WIDTH / 2, 2050)
+  context.fillText(project.bookNumber, SPINE_WIDTH / 2, 2050)
 
   context.font = `17px ${LATIN_FONT}`
   drawTrackedText(context, 'GARDEN', SPINE_WIDTH / 2, 2180, 4)
@@ -258,11 +376,103 @@ function createSpineTexture(project, renderer) {
   return configureTexture(new THREE.CanvasTexture(canvas), renderer)
 }
 
+function createCityTheaterSpineTexture(project, renderer) {
+  const canvas = makeCanvas(SPINE_WIDTH, SPINE_HEIGHT)
+  const context = canvas.getContext('2d')
+  const { paper, ink, accent, secondary } = project.coverPalette
+
+  context.fillStyle = paper
+  context.fillRect(0, 0, SPINE_WIDTH, SPINE_HEIGHT)
+  addPaperTexture(context, SPINE_WIDTH, SPINE_HEIGHT, ink, accent)
+
+  context.fillStyle = secondary
+  context.fillRect(0, 0, 38, SPINE_HEIGHT)
+  context.fillStyle = accent
+  context.fillRect(38, 0, 8, SPINE_HEIGHT)
+  context.fillRect(46, 112, SPINE_WIDTH - 46, 104)
+
+  context.textAlign = 'center'
+  context.textBaseline = 'top'
+  context.fillStyle = paper
+  context.font = `600 44px ${SANS_FONT}`
+  context.fillText(project.bookNumber, 232, 135)
+
+  context.fillStyle = ink
+  context.font = `600 96px ${SANS_FONT}`
+  drawVerticalText(context, project.spineText.chinese, 232, 324, 154)
+
+  context.save()
+  context.translate(232, 1040)
+  context.rotate(Math.PI / 2)
+  context.textAlign = 'left'
+  context.textBaseline = 'middle'
+  context.font = `500 33px ${SANS_FONT}`
+  drawTrackedText(context, project.spineText.english, 0, 0, 7)
+  context.restore()
+
+  context.fillStyle = accent
+  context.fillRect(124, 2038, 216, 3)
+  context.fillStyle = secondary
+  context.font = `500 15px ${SANS_FONT}`
+  drawTrackedText(context, 'XYZT AXIS SYSTEM', 232, 2090, 3)
+  drawTrackedText(context, 'URBAN DESIGN', 232, 2130, 4)
+  context.fillStyle = ink
+  context.font = `500 14px ${SANS_FONT}`
+  drawTrackedText(context, '59.2 HA', 232, 2242, 4)
+
+  return configureTexture(new THREE.CanvasTexture(canvas), renderer)
+}
+
+function createModernSpineTexture(project, renderer) {
+  const canvas = makeCanvas(SPINE_WIDTH, SPINE_HEIGHT)
+  const context = canvas.getContext('2d')
+  const { paper, ink, accent, secondary = accent } = project.coverPalette
+
+  context.fillStyle = paper
+  context.fillRect(0, 0, SPINE_WIDTH, SPINE_HEIGHT)
+  addPaperTexture(context, SPINE_WIDTH, SPINE_HEIGHT, ink, accent)
+  context.fillStyle = accent
+  context.fillRect(0, 72, SPINE_WIDTH, 18)
+  context.fillRect(0, 2332, SPINE_WIDTH, 18)
+
+  context.textAlign = 'center'
+  context.textBaseline = 'top'
+  context.fillStyle = ink
+  context.font = `600 ${project.coverStyle === 'archive' ? 78 : 94}px ${SANS_FONT}`
+  drawVerticalText(context, project.spineText.chinese, SPINE_WIDTH / 2, 206, project.coverStyle === 'archive' ? 126 : 146)
+
+  if (project.spineText.english) {
+    context.save()
+    context.translate(SPINE_WIDTH / 2, 930)
+    context.rotate(Math.PI / 2)
+    context.textAlign = 'left'
+    context.textBaseline = 'middle'
+    context.font = `500 34px ${SANS_FONT}`
+    drawTrackedText(context, project.spineText.english, 0, 0, 7)
+    context.restore()
+  }
+
+  context.fillStyle = secondary
+  context.fillRect(152, 2020, 116, 2)
+  context.fillRect(152, 2142, 116, 2)
+  context.fillStyle = ink
+  context.font = `600 44px ${SANS_FONT}`
+  context.fillText(project.bookNumber, SPINE_WIDTH / 2, 2056)
+  context.font = `500 15px ${SANS_FONT}`
+  drawTrackedText(context, 'ARCHITECTURE', SPINE_WIDTH / 2, 2200, 3)
+
+  return configureTexture(new THREE.CanvasTexture(canvas), renderer)
+}
+
 export function createBookCoverTextures(project, renderer, onUpdate) {
-  if (!project.coverSource || !project.coverPalette || !project.spineText) return null
+  if (!project.coverPalette || !project.spineText) return null
 
   return {
     cover: createFrontCoverTexture(project, renderer, onUpdate),
-    spine: createSpineTexture(project, renderer),
+    spine: project.coverStyle === 'xiyuan'
+      ? createXiyuanSpineTexture(project, renderer)
+      : project.coverStyle === 'city-theater'
+        ? createCityTheaterSpineTexture(project, renderer)
+        : createModernSpineTexture(project, renderer),
   }
 }

@@ -23,7 +23,8 @@
   --bank-w: 680px;
   --bank-h: 572px;
   --door-t: 11px;
-  --sans: 'IBM Plex Sans KR', system-ui, sans-serif;
+  --interface-sans: 'Source Han Sans SC', 'Noto Sans SC', 'Noto Sans CJK SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --sans: var(--interface-sans);
   --serif: 'Cormorant Garamond', Georgia, serif;
   --note: 'Caveat', cursive;
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.35' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");

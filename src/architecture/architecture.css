@@ -44,7 +44,7 @@
   margin: 0;
   transform: translateX(-50%);
   color: #403d38;
-  font-family: var(--serif);
+  font-family: var(--interface-sans);
   font-size: clamp(51.2px, 7.68vw, 124.8px);
   font-weight: 500;
   line-height: 0.8;
@@ -110,6 +110,7 @@
   margin: 0;
   padding: 4px 0;
   background: transparent;
+  font-family: var(--interface-sans);
 }
 
 @media (max-width: 700px) {

@@ -19,9 +19,15 @@ export function createArchitectureIndex({ root, onProjectSelect = () => {} }) {
       return
     }
 
+    const title = project.chineseTitle ?? project.title
+    if (!project.detailEnabled) {
+      selection.textContent = `${project.bookNumber} · ${title}`
+      return
+    }
+
     selection.textContent = selected
-      ? `${project.chineseTitle ?? project.title} selected · ${project.id}`
-      : `${project.chineseTitle ?? project.title} · ${project.englishTitle ?? project.year}`
+      ? `${project.bookNumber} · ${title} selected`
+      : `${project.bookNumber} · ${title} · ${project.englishTitle}`
   }
 
   return {
@@ -32,7 +38,7 @@ export function createArchitectureIndex({ root, onProjectSelect = () => {} }) {
         projects: architectureProjects,
         onFocus: (project) => updateSelection(project),
         onSelect(project) {
-          if (!project.interactive) return
+          if (!project.detailEnabled) return
           updateSelection(project, true)
           onProjectSelect(project.id)
         },
